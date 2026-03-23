@@ -1,0 +1,1 @@
+import{j as e}from"./motion-vendor-mP1pVv6d.js";const r=({text:t,disabled:a=!1,speed:s=5,className:n=""})=>{const i=`${s}s`;return e.jsx("span",{className:`shiny-text ${a?"disabled":""} ${n}`,style:{"--animation-duration":i},"data-text":t,children:t})};export{r as S};
