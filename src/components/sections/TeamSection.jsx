@@ -6,18 +6,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LinkedinIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-    <rect width="4" height="12" x="2" y="9"/>
-    <circle cx="4" cy="4" r="2"/>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 
 const UsersIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-    <circle cx="9" cy="7" r="4"/>
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 );
 
@@ -27,12 +27,22 @@ const TeamSection = () => {
   const headerRef = useRef(null);
 
   const organizers = [
-    { badge: 'FACULTY ADVISOR', name: 'DR. R. SURESH KUMAR', role: 'HOD - ECE Department', contact: '+91 9876543210', link: '#' },
-    { badge: 'FACULTY COORDINATOR', name: 'MS. PRIYA VENKATESH', role: 'IETE Faculty Coordinator', contact: '+91 9876543211', link: '#' },
-    { badge: 'CHAIRPERSON', name: 'ARUN PRAKASH S', role: 'IETE ISF Chairperson', contact: '+91 9876543212', link: '#' },
-    { badge: 'VICE CHAIRPERSON', name: 'DIVYA LAKSHMI R', role: 'IETE ISF Vice Chairperson', contact: '+91 9876543213', link: '#' },
-    { badge: 'SECRETARY', name: 'KARTHIK RAJA M', role: 'IETE ISF Secretary', contact: '+91 9876543214', link: '#' },
-    { badge: 'TECH LEAD', name: 'NITHYA SHREE B', role: 'Technical Lead', contact: '+91 9876543215', link: '#' },
+    { badge: 'FACULTY ADVISOR', name: 'DR. G NIRMALAPRIYA', role: 'HOD - ECE Department', contact: '+91 9025469644', link: '#' },
+    { badge: 'FACULTY COORDINATOR', name: 'MS. KALAIVANI S', role: 'IETE Faculty Coordinator', contact: '+91 9486966148', link: '#' },
+    { badge: 'CHAIRMAN', name: 'HARINI S', role: 'ECE III A', contact: '+91 6383078169', link: '#' },
+    { badge: 'VICE CHAIRMAN', name: 'JEYANANDH V S', role: 'VLSI III A', contact: '+91 9043580630', link: '#' },
+    { badge: 'HONORARY SECRETARY', name: 'KARTHIK S', role: 'ECE II A', contact: '+91 7200507050', link: '#' },
+    { badge: 'JOINT SECRETARY', name: 'SASIKUMAR M', role: 'VLSI II C', contact: '+91 9361957420', link: '#' },
+    { badge: 'TREASURER', name: 'MADESH S', role: 'ECE II B', contact: '+91 9445396430', link: '#' },
+    { badge: 'TREASURER', name: 'KAVIPRIYA D', role: 'VLSI II B', contact: '+91 9003562213', link: '#' },
+    { badge: 'EXECUTIVE TECHNICAL', name: 'BHAVANI SANKAR M', role: 'ECE II A', contact: '+91 9790896599', link: '#' },
+    { badge: 'EXECUTIVE TECHNICAL', name: 'BARATH R', role: 'ECE II A', contact: '+91 9442169681', link: '#' },
+    { badge: 'EXECUTIVE TECHNICAL', name: 'SUJI V', role: 'VLSI II C', contact: '+91 7200831242', link: '#' },
+    { badge: 'EXECUTIVE TECHNICAL', name: 'SUPRRAJA D', role: 'VLSI II C', contact: '+91 8870572444', link: '#' },
+    { badge: 'EXECUTIVE MEDIA AND CREATIVES', name: 'YOGANANDH', role: 'ECE II C', contact: '+91 9445630998', link: '#' },
+    { badge: 'EXECUTIVE MEDIA AND CREATIVES', name: 'HARISUDHAN S', role: 'VLSI II A', contact: '+91 8072281106', link: '#' },
+    { badge: 'DOCUMENTATION', name: 'PREETHI B', role: 'ECE II B', contact: '+91 8838320465', link: '#' },
+    { badge: 'DOCUMENTATION', name: 'JEEVITHA A G', role: 'VLSI II B', contact: '+91 8870978504', link: '#' },
   ];
 
   useEffect(() => {
@@ -75,7 +85,7 @@ const TeamSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {organizers.map((person, i) => (
-            <div 
+            <div
               key={i}
               ref={el => cardsRef.current[i] = el}
               className="team-card relative bg-transparent border border-white/5 p-8 rounded-sm hover:border-primary/40 hover:shadow-[0_0_25px_rgba(0,230,118,0.08)] hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default"
