@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,8 +12,10 @@ const QuestionIcon = () => (
   </svg>
 );
 
-const ChevronIcon = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+const ChevronIcon = ({ isOpen }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    className={`shrink-0 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-zinc-500'}`}
+  >
     <path d="m6 9 6 6 6-6"/>
   </svg>
 );
@@ -21,6 +23,9 @@ const ChevronIcon = ({ className }) => (
 const FAQSection = () => {
   const sectionRef = useRef(null);
   const [openIndex, setOpenIndex] = useState(null);
+  const contentRefs = useRef([]);
+  const chevronRefs = useRef([]);
+  const itemsRef = useRef([]);
 
   const faqs = [
     { q: "What if I don't have a team?", a: "You can find teammates on our Discord server or team building sessions during the event." },
@@ -32,27 +37,75 @@ const FAQSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.faq-item', {
-        opacity: 0, 
-        y: 20, 
-        duration: 0.6, 
-        stagger: 0.1, 
-        ease: 'power2.out',
-        scrollTrigger: { 
-          trigger: sectionRef.current, 
-          start: 'top 85%' 
-        }
+      // Header entrance
+      gsap.from('.faq-header', {
+        opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+      });
+
+      // Items stagger entrance — using opacity and y only (no clipPath so they stay visible)
+      itemsRef.current.forEach((item, i) => {
+        if (!item) return;
+        gsap.fromTo(item,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: 'power3.out',
+            scrollTrigger: { 
+              trigger: sectionRef.current, 
+              start: 'top 80%' 
+            }
+          }
+        );
       });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+
+  const toggleFaq = useCallback((i) => {
+    const content = contentRefs.current[i];
+    const chevron = chevronRefs.current[i];
+    
+    // Close previous
+    if (openIndex !== null && openIndex !== i) {
+      const prevContent = contentRefs.current[openIndex];
+      const prevChevron = chevronRefs.current[openIndex];
+      if (prevContent) {
+        gsap.to(prevContent, { height: 0, opacity: 0, duration: 0.4, ease: 'power2.inOut' });
+      }
+      if (prevChevron) {
+        gsap.to(prevChevron, { rotation: 0, duration: 0.3 });
+      }
+    }
+
+    if (openIndex === i) {
+      // Close current
+      if (content) gsap.to(content, { height: 0, opacity: 0, duration: 0.4, ease: 'power2.inOut' });
+      if (chevron) gsap.to(chevron, { rotation: 0, duration: 0.3 });
+      setOpenIndex(null);
+    } else {
+      // Open new
+      if (content) {
+        gsap.set(content, { height: 'auto', opacity: 1 });
+        const fullHeight = content.scrollHeight;
+        gsap.fromTo(content,
+          { height: 0, opacity: 0 },
+          { height: fullHeight, opacity: 1, duration: 0.5, ease: 'power2.out' }
+        );
+      }
+      if (chevron) gsap.to(chevron, { rotation: 180, duration: 0.3, ease: 'power2.out' });
+      setOpenIndex(i);
+    }
+  }, [openIndex]);
 
   return (
     <section id="faqs" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-[#050505]">
       <div className="container mx-auto px-6 md:px-12 max-w-4xl">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="faq-header text-center mb-16">
           <p className="text-primary/90 text-sm font-bold tracking-[0.25em] mb-4 uppercase">INTELLIGENCE BRIEF</p>
           <h2 className="text-4xl md:text-5xl font-display font-black tracking-tighter text-white mb-1 uppercase">
             CLASSIFIED FILES
@@ -69,24 +122,41 @@ const FAQSection = () => {
         <div className="flex flex-col gap-4">
           {faqs.map((faq, i) => (
             <div 
-              key={i} 
-              className={`faq-item border border-white/10 hover:border-primary/20 bg-transparent rounded-lg overflow-hidden transition-all duration-300`}
+              key={i}
+              ref={el => itemsRef.current[i] = el}
+              className={`relative border rounded-lg overflow-hidden transition-all duration-500 ${
+                openIndex === i 
+                  ? 'border-primary/40 shadow-[0_0_20px_rgba(250,204,21,0.08)] bg-primary/[0.02]' 
+                  : 'border-white/10 hover:border-primary/20 bg-transparent'
+              }`}
             >
+              {/* Active glow left border */}
+              <div className={`absolute left-0 top-0 bottom-0 w-0.5 rounded-full transition-all duration-500 z-10 ${
+                openIndex === i ? 'bg-primary shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'bg-transparent'
+              }`}></div>
+
               <button 
-                className="w-full flex items-center p-5 text-left bg-transparent"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full flex items-center p-5 text-left bg-transparent relative z-10"
+                onClick={() => toggleFaq(i)}
               >
-                <div className="p-2 border border-primary/20 rounded mr-6 text-primary shrink-0 bg-primary/5">
+                <div className={`p-2 border rounded mr-6 shrink-0 transition-all duration-300 ${
+                  openIndex === i 
+                    ? 'border-primary/40 text-primary bg-primary/10' 
+                    : 'border-primary/20 text-primary bg-primary/5'
+                }`}>
                   <QuestionIcon />
                 </div>
-                <span className={`font-sans font-bold text-[15px] md:text-[17px] flex-1 ${openIndex === i ? 'text-primary' : 'text-zinc-100'} transition-colors`}>
+                <span className={`font-sans font-bold text-[15px] md:text-[17px] flex-1 transition-colors duration-300 ${openIndex === i ? 'text-primary' : 'text-zinc-100'}`}>
                   {faq.q}
                 </span>
-                <ChevronIcon className={`transform transition-transform shrink-0 ${openIndex === i ? 'rotate-180 text-primary' : 'text-zinc-500'}`} />
+                <div ref={el => chevronRefs.current[i] = el}>
+                  <ChevronIcon isOpen={openIndex === i} />
+                </div>
               </button>
               <div 
-                className="overflow-hidden transition-all duration-300 ease-in-out bg-white/[0.02]"
-                style={{ maxHeight: openIndex === i ? '200px' : '0', opacity: openIndex === i ? 1 : 0 }}
+                ref={el => contentRefs.current[i] = el}
+                className="overflow-hidden"
+                style={{ height: 0, opacity: 0 }}
               >
                 <p className="p-6 pt-2 pl-20 text-zinc-400 text-sm leading-relaxed border-t border-white/5">{faq.a}</p>
               </div>

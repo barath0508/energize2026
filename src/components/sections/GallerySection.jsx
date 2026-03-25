@@ -19,15 +19,45 @@ const GallerySection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header
+      gsap.from('.gallery-header', {
+        opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
+      });
+
+      // Clip-path reveal + parallax tilt for each image
       imagesRef.current.forEach((img, i) => {
-        gsap.from(img, {
-          opacity: 0,
-          y: i % 2 === 0 ? 50 : -50,
-          duration: 1,
-          ease: 'power3.out',
+        if (!img) return;
+        const isEven = i % 2 === 0;
+        const isLeft = i % 3 === 0;
+
+        // Clip-path reveal
+        gsap.fromTo(img,
+          { 
+            clipPath: isLeft ? 'inset(0 100% 0 0)' : 'inset(0 0 100% 0)',
+            opacity: 0 
+          },
+          {
+            clipPath: 'inset(0 0% 0% 0)',
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.inOut',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top 88%',
+            }
+          }
+        );
+
+        // Parallax shift on scroll
+        gsap.to(img, {
+          y: isEven ? -30 : 30,
+          ease: 'none',
           scrollTrigger: {
             trigger: img,
-            start: 'top 85%',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
           }
         });
       });
@@ -38,7 +68,7 @@ const GallerySection = () => {
   return (
     <section id="gallery" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-black">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-4xl md:text-6xl font-display font-black tracking-tighter text-white mb-16">
+        <h2 className="gallery-header text-4xl md:text-6xl font-display font-black tracking-tighter text-white mb-16">
           THE <span className="text-primary text-glow">ARCHIVES</span>
         </h2>
         
@@ -47,18 +77,28 @@ const GallerySection = () => {
             <div 
               key={i} 
               ref={el => imagesRef.current[i] = el}
-              className="relative overflow-hidden group aspect-video rounded-sm border border-white/10 hover:border-primary/80 transition-colors"
+              className="relative overflow-hidden group aspect-video rounded-sm border border-white/10 hover:border-primary/80 transition-colors duration-500"
             >
+              {/* Golden vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none duration-700"></div>
+              
+              {/* Color overlay */}
               <div className="absolute inset-0 bg-primary mix-blend-color opacity-0 group-hover:opacity-20 transition-opacity z-10 pointer-events-none duration-500"></div>
+              
               <img 
                 src={img.src} 
                 alt={img.alt} 
                 className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700 ease-out"
                 loading="lazy"
               />
+              
+              {/* Caption overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20">
                 <p className="text-left font-mono text-xs text-primary font-bold tracking-widest uppercase truncate">{img.alt}</p>
               </div>
+
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-t-primary/0 border-l-[40px] border-l-transparent group-hover:border-t-primary/30 transition-all duration-500"></div>
             </div>
           ))}
         </div>

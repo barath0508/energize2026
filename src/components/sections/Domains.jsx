@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -23,12 +23,15 @@ const Domains = () => {
         { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' } }
       );
 
+      // Clip-path unfold entrance
       gsap.fromTo(cardsRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
+        { opacity: 0, clipPath: 'inset(100% 0 0 0)' },
         {
-          opacity: 1, y: 0, scale: 1, duration: 0.6,
+          opacity: 1,
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 0.9,
           stagger: 0.15,
-          ease: 'power2.out',
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 75%',
@@ -39,6 +42,45 @@ const Domains = () => {
     }, sectionRef);
 
     return () => ctx.revert();
+  }, []);
+
+  // Magnetic hover + 3D tilt + spotlight
+  const handleMouseMove = useCallback((e, i) => {
+    const card = cardsRef.current[i];
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    const translateX = ((x - centerX) / centerX) * 5;
+    const translateY = ((y - centerY) / centerY) * 5;
+
+    gsap.to(card, {
+      rotateX, rotateY,
+      x: translateX, y: translateY,
+      duration: 0.4, ease: 'power2.out',
+      transformPerspective: 800,
+    });
+
+    // Spotlight gradient
+    const spotlight = card.querySelector('.card-spotlight');
+    if (spotlight) {
+      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(250,204,21,0.12) 0%, transparent 60%)`;
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback((i) => {
+    const card = cardsRef.current[i];
+    if (!card) return;
+    gsap.to(card, {
+      rotateX: 0, rotateY: 0, x: 0, y: 0,
+      duration: 0.6, ease: 'elastic.out(1, 0.4)',
+    });
+    const spotlight = card.querySelector('.card-spotlight');
+    if (spotlight) spotlight.style.background = 'none';
   }, []);
 
   return (
@@ -60,14 +102,22 @@ const Domains = () => {
             <div 
               key={i}
               ref={el => cardsRef.current[i] = el}
-              className="group relative bg-[#111] border border-white/10 p-8 rounded-sm overflow-hidden hover:border-primary transition-all duration-300 transform-gpu hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(250,204,21,0.1)]"
+              className="group relative bg-[#111] border border-white/10 p-8 rounded-sm overflow-hidden hover:border-primary transition-colors duration-300 transform-gpu cursor-default"
+              style={{ transformStyle: 'preserve-3d' }}
+              onMouseMove={(e) => handleMouseMove(e, i)}
+              onMouseLeave={() => handleMouseLeave(i)}
             >
-              <div className="absolute top-0 right-0 p-4 font-mono text-xs text-zinc-600 group-hover:text-primary/50 transition-colors">
-                [SCTOR_{domain.id}]
+              {/* Spotlight overlay */}
+              <div className="card-spotlight absolute inset-0 z-0 pointer-events-none rounded-sm"></div>
+
+              <div className="relative z-10">
+                <div className="absolute top-0 right-0 p-4 font-mono text-xs text-zinc-600 group-hover:text-primary/50 transition-colors">
+                  [SCTOR_{domain.id}]
+                </div>
+                <div className="text-4xl mb-6 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">{domain.icon}</div>
+                <h3 className="text-2xl font-display font-black text-white mb-3 group-hover:text-primary transition-colors">{domain.title}</h3>
+                <p className="text-zinc-400 group-hover:text-zinc-300 transition-colors">{domain.desc}</p>
               </div>
-              <div className="text-4xl mb-6 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all">{domain.icon}</div>
-              <h3 className="text-2xl font-display font-black text-white mb-3 group-hover:text-primary transition-colors">{domain.title}</h3>
-              <p className="text-zinc-400 group-hover:text-zinc-300 transition-colors">{domain.desc}</p>
               
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-primary group-hover:w-full transition-all duration-500"></div>
             </div>

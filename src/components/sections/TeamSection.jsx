@@ -23,6 +23,8 @@ const UsersIcon = () => (
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
+  const headerRef = useRef(null);
 
   const organizers = [
     { badge: 'COMMUNITY HEAD', name: 'MR. C. OBED OTTO', role: 'Dean - SCOFT (ICT)', contact: '+91 0000000000', link: '#' },
@@ -34,8 +36,35 @@ const TeamSection = () => {
   ];
 
   useEffect(() => {
-    // GSAP animations removed to ensure cards remain perfectly aligned 
-    // and maintain exact 100% transparency uniform with the background at all times.
+    const ctx = gsap.context(() => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          opacity: 0, x: -40, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
+        });
+      }
+
+      // Cards staggered scroll entrance
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.fromTo(card,
+          { opacity: 0, y: 60, scale: 0.95 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 90%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -43,7 +72,7 @@ const TeamSection = () => {
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         
         {/* Section Header */}
-        <div className="flex items-start gap-6 mb-16">
+        <div ref={headerRef} className="flex items-start gap-6 mb-16">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50">
             <UsersIcon />
           </div>
@@ -59,16 +88,17 @@ const TeamSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {organizers.map((person, i) => (
             <div 
-              key={i} 
-              className="team-card bg-transparent border border-white/5 p-8 rounded-sm hover:border-white/10 transition-all duration-300 flex flex-col h-full"
+              key={i}
+              ref={el => cardsRef.current[i] = el}
+              className="team-card bg-transparent border border-white/5 p-8 rounded-sm hover:border-primary/40 hover:shadow-[0_0_25px_rgba(250,204,21,0.08)] hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default"
             >
               <div className="flex justify-between items-start mb-8">
-                <div className="px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.1em] uppercase shadow-[0_0_10px_rgba(250,204,21,0.05)]">
+                <div className="px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.1em] uppercase shadow-[0_0_10px_rgba(250,204,21,0.05)] group-hover:bg-primary/10 group-hover:shadow-[0_0_15px_rgba(250,204,21,0.1)] transition-all duration-300">
                   {person.badge}
                 </div>
                 <a 
                   href={person.link} 
-                  className="p-1.5 border border-white/10 rounded border-primary/20 text-primary/70 group-hover:text-primary transition-colors hover:bg-primary/5"
+                  className="p-1.5 border border-white/10 rounded border-primary/20 text-primary/70 hover:text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                   aria-label="LinkedIn Profile"
                 >
                   <LinkedinIcon />
@@ -76,7 +106,7 @@ const TeamSection = () => {
               </div>
               
               <div className="text-left mb-6">
-                <h3 className="text-lg font-display font-black text-primary text-glow mb-2">{person.name}</h3>
+                <h3 className="text-lg font-display font-black text-primary group-hover:animate-glow-pulse mb-2 transition-all duration-300">{person.name}</h3>
                 <p className="text-zinc-300 text-sm tracking-wide">{person.role}</p>
               </div>
 
@@ -84,6 +114,9 @@ const TeamSection = () => {
                 <p className="text-primary/70 text-[10px] font-black tracking-[0.15em] mb-1 uppercase">CONTACT</p>
                 <p className="text-zinc-300 text-[13px] font-mono font-medium tracking-wider">{person.contact}</p>
               </div>
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-700 rounded-full"></div>
             </div>
           ))}
         </div>

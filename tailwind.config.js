@@ -7,28 +7,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#080808', // Deep Black/Dark Charcoal
+        background: '#080808',
         surface: '#111111',
         primary: {
-          DEFAULT: '#facc15', // Gold/Yellow
+          DEFAULT: '#facc15',
           dark: '#eab308',
           glow: 'rgba(250, 204, 21, 0.5)'
         },
-        muted: '#52525B', // Zinc 600
-        carbon: '#18181b', // Zinc 900
+        muted: '#52525B',
+        carbon: '#18181b',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'], // For big headings
+        display: ['Outfit', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 40s linear infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'glitch': 'glitch 0.8s steps(10) infinite',
+        'shine': 'shine 3s ease-in-out infinite',
+        'float': 'float 4s ease-in-out infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'node-pulse': 'node-pulse 2s ease-out infinite',
+        'bounce-in': 'bounce-in 0.6s ease-out forwards',
+        'marquee-scroll': 'marquee-scroll 30s linear infinite',
+        'marquee-reverse': 'marquee-scroll-reverse 35s linear infinite',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' }, // Assuming double content for seamless loop
+          '100%': { transform: 'translateX(-50%)' },
         }
       }
     },
