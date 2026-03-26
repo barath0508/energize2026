@@ -50,18 +50,18 @@ const TeamSection = () => {
     const ctx = gsap.context(() => {
       if (headerRef.current) {
         gsap.from(headerRef.current.children, {
-          opacity: 0, x: -40, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          opacity: 0, y: 40, duration: 0.2, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
         });
       }
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
         gsap.fromTo(card,
-          { opacity: 0, y: 60, scale: 0.95 },
+          { opacity: 0, y: 30, scale: 0.95 },
           {
             opacity: 1, y: 0, scale: 1,
-            duration: 0.8, delay: i * 0.1, ease: 'power3.out',
-            scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' }
+            duration: 0.1, ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none reverse' }
           }
         );
       });
