@@ -5,8 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const sponsors = [
-  'IETE ISF', 'RIT Chennai', 'Green Energy Co', 'TechGrid Labs', 'EcoVolt', 'SolarSync',
-  'PowerNode', 'CleanTech AI', 'Grid Innovate', 'Renewable Hub', 'SmartMeter Pro', 'EcoCircuit',
+  'IETE ISF', 'RIT Chennai',  
 ];
 
 const MarqueeRow = ({ items, reverse = false, speed = 30 }) => (
