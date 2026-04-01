@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import heroBg from '../../assets/hero.png';
@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const containerRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Badge float in
       gsap.from('.hero-badge', {
@@ -61,17 +61,24 @@ const Hero = () => {
       gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1.2, ease: 'power3.out' });
 
       // Info pills stagger
-      gsap.from('.hero-pill', {
-        opacity: 0, y: 20, scale: 0.9,
-        duration: 0.6, delay: 1.4, stagger: 0.1, ease: 'back.out(1.5)'
-      });
+      gsap.fromTo('.hero-pill', 
+        { opacity: 0, y: 30, scale: 0.8 },
+        { 
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.8, delay: 1.4, stagger: 0.15, 
+          ease: 'back.out(1.5)', clearProps: 'all' 
+        }
+      );
 
       // Button elastic entrance
-      gsap.from('.hero-btn', {
-        opacity: 0, scale: 0, y: 40,
-        duration: 0.8, delay: 1.8, stagger: 0.2,
-        ease: 'elastic.out(1, 0.5)'
-      });
+      gsap.fromTo('.hero-btn', 
+        { opacity: 0, scale: 0.5, y: 40 },
+        { 
+          opacity: 1, scale: 1, y: 0,
+          duration: 1, delay: 1.8, stagger: 0.2,
+          ease: 'elastic.out(1, 0.5)', clearProps: 'all' 
+        }
+      );
 
       // Background slow drift
       gsap.to('.hero-bg-img', {
@@ -164,7 +171,17 @@ const Hero = () => {
           >
             ⚡ Register Now
           </a>
-          <button className="hero-btn w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-all rounded-sm active:scale-95 uppercase tracking-wider hover:border-primary/50 hover:-translate-y-0.5 duration-300">
+          <button 
+            onClick={() => {
+              const target = document.querySelector('#tracks');
+              if (target && window.lenis) {
+                window.lenis.scrollTo(target);
+              } else if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="hero-btn w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-all rounded-sm active:scale-95 uppercase tracking-wider hover:border-primary/50 hover:-translate-y-0.5 duration-300"
+          >
             View Tracks
           </button>
         </div>

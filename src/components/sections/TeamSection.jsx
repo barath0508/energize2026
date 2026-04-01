@@ -89,14 +89,7 @@ const TeamSection = () => {
               ref={el => cardsRef.current[i] = el}
               className="team-card relative bg-transparent border border-white/5 p-8 rounded-sm hover:border-primary/40 hover:shadow-[0_0_25px_rgba(0,230,118,0.08)] hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default"
             >
-              <div className="flex justify-between items-start mb-8">
-                <div className="px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.1em] uppercase shadow-[0_0_10px_rgba(0,230,118,0.05)] group-hover:bg-primary/10 transition-all duration-300">
-                  {person.badge}
-                </div>
-                <a href={person.link} className="p-1.5 border border-white/10 rounded border-primary/20 text-primary/70 hover:text-primary hover:bg-primary/10 transition-all duration-300" aria-label="LinkedIn">
-                  <LinkedinIcon />
-                </a>
-              </div>
+              
               <div className="text-left mb-6">
                 <h3 className="text-lg font-display font-black text-primary group-hover:animate-glow-pulse mb-2 transition-all duration-300">{person.name}</h3>
                 <p className="text-zinc-300 text-sm tracking-wide">{person.role}</p>
