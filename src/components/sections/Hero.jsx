@@ -152,7 +152,7 @@ const Hero = () => {
         {/* Info pills */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {[
-            { icon: '📍', text: 'Green Building, 4th Floor' },
+            { icon: '📍', text: 'Green Building, 4th Floor, RIT' },
             { icon: '👥', text: '2–4 Members' },
             { icon: '💰', text: '₹200 per team' },
           ].map((pill, i) => (
