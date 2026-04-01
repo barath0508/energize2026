@@ -61,22 +61,22 @@ const Hero = () => {
       gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1.2, ease: 'power3.out' });
 
       // Info pills stagger
-      gsap.fromTo('.hero-pill', 
+      gsap.fromTo('.hero-pill',
         { opacity: 0, y: 30, scale: 0.8 },
-        { 
+        {
           opacity: 1, y: 0, scale: 1,
-          duration: 0.8, delay: 1.4, stagger: 0.15, 
-          ease: 'back.out(1.5)', clearProps: 'all' 
+          duration: 0.8, delay: 1.4, stagger: 0.15,
+          ease: 'back.out(1.5)', clearProps: 'all'
         }
       );
 
       // Button elastic entrance
-      gsap.fromTo('.hero-btn', 
+      gsap.fromTo('.hero-btn',
         { opacity: 0, scale: 0.5, y: 40 },
-        { 
+        {
           opacity: 1, scale: 1, y: 0,
           duration: 1, delay: 1.8, stagger: 0.2,
-          ease: 'elastic.out(1, 0.5)', clearProps: 'all' 
+          ease: 'elastic.out(1, 0.5)', clearProps: 'all'
         }
       );
 
@@ -164,14 +164,14 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://forms.gle/9LpAgvpFRi5ybMtN6"
+            href="https://forms.gle/EXV3PpsJzkqULSKB6"
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] hover:-translate-y-0.5 duration-300 inline-block text-center"
           >
             ⚡ Register Now
           </a>
-          <button 
+          <button
             onClick={() => {
               const target = document.querySelector('#tracks');
               if (target && window.lenis) {

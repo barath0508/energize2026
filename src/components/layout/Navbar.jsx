@@ -110,7 +110,7 @@ const Navbar = () => {
           </button>
 
           <a
-            href="https://forms.gle/9LpAgvpFRi5ybMtN6"
+            href="https://forms.gle/EXV3PpsJzkqULSKB6"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden lg:block px-6 py-2.5 bg-primary text-black font-bold text-sm hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wide inline-block text-center"
@@ -148,7 +148,7 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="https://forms.gle/9LpAgvpFRi5ybMtN6"
+              href="https://forms.gle/EXV3PpsJzkqULSKB6"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full text-center px-6 py-3 bg-primary text-black font-bold transition-all rounded-sm active:scale-95 mt-4 block"
