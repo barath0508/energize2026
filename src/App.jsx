@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/layout/Navbar';
 import FloatingMap from './components/layout/FloatingCalendar';
 import Hero from './components/sections/Hero';
@@ -73,6 +74,7 @@ function App() {
       <Footer />
       <FloatingMap />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
