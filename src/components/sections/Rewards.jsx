@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -40,6 +40,14 @@ const RewardCard = ({
         titleColor: 'text-orange-500/70',
         hoverBorder: 'hover:border-orange-500/40', hoverShadow: 'hover:shadow-[0_0_25px_rgba(249,115,22,0.08)]',
         bottomLine: 'bg-orange-500'
+      };
+      case 'purple': return {
+        badgeBorder: 'border-purple-500/30', badgeBg: 'bg-purple-500/5', badgeText: 'text-purple-500', badgeShadow: 'shadow-[0_0_10px_rgba(168,85,247,0.05)]', badgeHover: 'group-hover:bg-purple-500/10',
+        iconColor: 'text-purple-500',
+        amountColor: 'text-purple-500 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]',
+        titleColor: 'text-purple-500/70',
+        hoverBorder: 'hover:border-purple-500/40', hoverShadow: 'hover:shadow-[0_0_25px_rgba(168,85,247,0.08)]',
+        bottomLine: 'bg-purple-500'
       };
       case 'zinc': return {
         badgeBorder: 'border-zinc-200/30', badgeBg: 'bg-zinc-200/5', badgeText: 'text-zinc-200', badgeShadow: 'shadow-[0_0_10px_rgba(228,228,231,0.05)]', badgeHover: 'group-hover:bg-zinc-200/10',
@@ -102,25 +110,34 @@ const RewardCard = ({
 const Rewards = () => {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.from(['.rewards-header > *', '.rewards-desc'], {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
-      });
+      // Force scroll calculations to update after all DOM/images settle
+      setTimeout(() => ScrollTrigger.refresh(), 500);
 
-      gsap.from('.reward-card-anim', {
-        y: 80,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
-      });
+      gsap.fromTo(['.rewards-header > *', '.rewards-desc'],
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+          clearProps: "all"
+        }
+      );
+
+      gsap.fromTo('.reward-card-anim',
+        { y: 80, opacity: 0 },
+        {
+          y: 0, opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+          clearProps: "all"
+        }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -177,11 +194,11 @@ const Rewards = () => {
   );
 
   const CertIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full text-zinc-200">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full text-purple-500">
       <defs>
         <linearGradient id="cert-grad" x1="0" y1="0" x2="0" y2="100%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#e4e4e7" />
+          <stop offset="100%" stopColor="#a855f7" />
         </linearGradient>
       </defs>
       <rect x="3" y="4" width="18" height="16" rx="2" stroke="url(#cert-grad)" />
@@ -247,7 +264,15 @@ const Rewards = () => {
             colorScheme="orange"
           />
 
-          
+          <RewardCard
+            badgeText="PARTICIPANT"
+            title="THE SCHOLAR"
+            amount="Certificate"
+            subtitle="For All"
+            description="Honor and recognition for all who participated and submitted a valid project."
+            icon={CertIcon}
+            colorScheme="purple"
+          />
 
         </div>
       </div>

@@ -66,8 +66,8 @@ function App() {
         <Rewards />
         <SponsorsSection />
         <GallerySection />
-        <TeamSection />
         <FAQSection />
+        <TeamSection />
       </main>
 
       <Footer />

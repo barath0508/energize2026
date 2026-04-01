@@ -20,12 +20,29 @@ const ChevronIcon = ({ isOpen }) => (
   </svg>
 );
 
+const RuleIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+    <path d="m9 12 2 2 4-4"/>
+  </svg>
+);
+
 const FAQSection = () => {
   const sectionRef = useRef(null);
   const [openIndex, setOpenIndex] = useState(null);
   const contentRefs = useRef([]);
   const chevronRefs = useRef([]);
   const itemsRef = useRef([]);
+  const rulesRef = useRef(null);
+
+  const rules = [
+    "Each team must have 2–4 members only.",
+    "Teams must choose one track (Software or Hardware).",
+    "The hackathon must be developed based on the theme: Smart Energy.",
+    "Participants must bring their own required materials (laptop/components).",
+    "The hackathon is on-spot and must be completed within the given time.",
+    "Evaluation is based on idea, innovation, prototype, and presentation; judges' decision is final."
+  ];
 
   const faqs = [
     { q: "What is ENERGIZE 2026?", a: "ENERGIZE 2026 is an on-spot hackathon organized by the IETE Students' Forum at RIT, focused on sustainable energy solutions through software and hardware innovation." },
@@ -42,12 +59,18 @@ const FAQSection = () => {
         opacity: 0, y: 40, duration: 0.8, stagger: 0.15, ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
       });
+
+      gsap.from('.rule-card', {
+        opacity: 0, y: 30, scale: 0.95, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+        scrollTrigger: { trigger: rulesRef.current, start: 'top 85%' }
+      });
+
       itemsRef.current.forEach((item, i) => {
         if (!item) return;
         gsap.fromTo(item,
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
+            scrollTrigger: { trigger: '.faq-accordion-container', start: 'top 80%' }
           }
         );
       });
@@ -83,21 +106,34 @@ const FAQSection = () => {
 
   return (
     <section id="faqs" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07]">
-      <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+      <div className="container mx-auto px-6 md:px-12 max-w-5xl">
         <div className="faq-header flex flex-col items-center text-center mb-6">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
               <circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" />
             </svg>
           </div>
-          <p className="text-primary/70 text-xs font-bold tracking-[0.2em] mb-1 uppercase">GOT QUESTIONS?</p>
+          <p className="text-primary/70 text-xs font-bold tracking-[0.2em] mb-1 uppercase">Guidelines & Info</p>
           <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter text-white">
-            FREQUENTLY ASKED <span className="text-primary">QUESTIONS</span>
+            RULES & <span className="text-primary">FAQ</span>
           </h2>
         </div>
         <p className="text-zinc-400 mb-16 max-w-xl mx-auto text-center faq-desc">Everything you need to know before powering up.</p>
 
-        <div className="flex flex-col gap-4">
+        {/* Rules Grid */}
+        <div ref={rulesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+          {rules.map((rule, idx) => (
+            <div key={idx} className="rule-card flex gap-4 p-5 bg-black/40 border border-white/5 rounded-lg hover:border-primary/30 transition-colors duration-300">
+              <div className="shrink-0 mt-0.5">
+                <RuleIcon />
+              </div>
+              <p className="text-sm text-zinc-300 leading-relaxed font-medium">{rule}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* FAQs Accordion */}
+        <div className="faq-accordion-container flex flex-col gap-4 max-w-4xl mx-auto">
           {faqs.map((faq, i) => (
             <div 
               key={i}

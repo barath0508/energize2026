@@ -50,9 +50,9 @@ const Footer = () => {
         <p className="footer-cta-desc text-zinc-400 mb-8 max-w-lg mx-auto">
           Don't just watch the future happen — power it. Join ENERGIZE 2026 and build the grid of tomorrow.
         </p>
-        
-        <a 
-          href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+
+        <a
+          href="https://forms.gle/9LpAgvpFRi5ybMtN6"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-cta-btn px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 hover:shadow-[0_0_40px_rgba(0,230,118,0.4)] hover:-translate-y-1 duration-300 inline-block text-center"

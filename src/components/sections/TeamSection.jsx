@@ -29,7 +29,7 @@ const TeamSection = () => {
   const organizers = [
     { badge: 'FACULTY ADVISOR', name: 'DR. G NIRMALAPRIYA', role: 'HOD - ECE Department', contact: '+91 9025469644', link: 'https://www.linkedin.com/in/nirmala-priya-790932156/' },
     { badge: 'FACULTY COORDINATOR', name: 'MS. KALAIVANI S', role: 'IETE Faculty Coordinator', contact: '+91 9486966148', link: '#' },
-    { badge: 'CHAIRMAN', name: 'HARINI S', role: '3rd year ECE A', contact: '+91 6383078169', link: '#' },
+    { badge: 'CHAIRMAN', name: 'HARINI S', role: '3rd year ECE A', contact: '+91 6383078169', link: 'https://www.linkedin.com/in/harini-shanmuganathan-13jan2006' },
     { badge: 'VICE CHAIRMAN', name: 'JEYANANDH V S', role: '3rd year VLSI A', contact: '+91 9043580630', link: 'https://www.linkedin.com/in/jeyanandh-v-s/' },
     { badge: 'HONORARY SECRETARY', name: 'KARTHIK S', role: '2nd year ECE A', contact: '+91 7200507050', link: 'https://www.linkedin.com/in/karthik2745/' },
     { badge: 'JOINT SECRETARY', name: 'SASIKUMAR M', role: '2nd year VLSI C', contact: '+91 9361957420', link: '#' },

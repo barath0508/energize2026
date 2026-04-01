@@ -15,7 +15,7 @@ const Hero = () => {
         opacity: 0, y: -30, scale: 0.8,
         duration: 1, delay: 0.2, ease: 'elastic.out(1, 0.5)'
       });
-      
+
       // Continuous badge float
       gsap.to('.hero-badge', {
         y: -5, rotation: 0.5,
@@ -23,7 +23,7 @@ const Hero = () => {
       });
 
       // Title line 1 — clip & slide reveal
-      gsap.fromTo('.hero-title-1', 
+      gsap.fromTo('.hero-title-1',
         { clipPath: 'inset(0 100% 0 0)', opacity: 0, x: -60 },
         { clipPath: 'inset(0 0% 0 0)', opacity: 1, x: 0, duration: 1.2, delay: 0.4, ease: 'power4.out' }
       );
@@ -106,18 +106,18 @@ const Hero = () => {
   return (
     <section id="hero" ref={containerRef} className="min-h-screen relative flex items-center justify-center pt-20 px-6 overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="hero-bg-img absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-screen scale-110"
         style={{ backgroundImage: `url(${heroBg})` }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-10 pointer-events-none"></div>
-      
+
       <div className="hero-content container mx-auto text-center relative z-20">
         {/* Bolt + Badge */}
         <div className="hero-badge inline-flex items-center gap-2 mb-6 px-5 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary text-sm font-bold tracking-widest backdrop-blur-md">
           <span className="hero-bolt text-lg">⚡</span> APRIL 21, 2026 • 8:30 AM – 2:30 PM
         </div>
-        
+
         <h1 className="text-5xl md:text-7xl lg:text-[9rem] font-display font-black tracking-tighter text-white leading-none mb-2 relative overflow-hidden">
           <span className="hero-title-1 text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 block">
             ENERGIZE
@@ -137,7 +137,7 @@ const Hero = () => {
         <p className="hero-subtitle text-xl md:text-2xl font-display font-bold text-accent tracking-wide mb-4">
           Bridging Bytes & Bricks
         </p>
-        
+
         <p className="hero-desc text-base md:text-lg text-zinc-400 max-w-2xl mx-auto mb-8 font-medium">
           Ready to build the future of energy? The IETE Students' Forum at Rajalakshmi Institute of Technology invites you to a high-stakes, on-spot hackathon where code meets carbon neutrality.
         </p>
@@ -154,10 +154,10 @@ const Hero = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+          <a
+            href="https://forms.gle/9LpAgvpFRi5ybMtN6"
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] hover:-translate-y-0.5 duration-300 inline-block text-center"
