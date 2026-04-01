@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/layout/Navbar';
-import FloatingCalendar from './components/layout/FloatingCalendar';
+import FloatingMap from './components/layout/FloatingCalendar';
 import Hero from './components/sections/Hero';
 import Mission from './components/sections/Mission';
 import Domains from './components/sections/Domains';
@@ -71,7 +71,7 @@ function App() {
       </main>
 
       <Footer />
-      <FloatingCalendar />
+      <FloatingMap />
       <Analytics />
     </div>
   );
