@@ -49,7 +49,7 @@ const Mission = () => {
 
   const stats = [
     { icon: '📅', value: 'APR 21', label: 'Date', suffix: '' },
-    { icon: '⏰', value: '5 HRS', label: 'Duration', suffix: '' },
+    { icon: '⏰', value: '6 HRS', label: 'Duration', suffix: '' },
     { icon: '👥', value: '2–4', label: 'Team Size', suffix: '' },
     { icon: '💰', value: '₹200', label: 'Per Team', suffix: '' },
   ];

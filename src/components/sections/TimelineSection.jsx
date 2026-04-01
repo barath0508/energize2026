@@ -17,12 +17,12 @@ const TimelineSection = () => {
   const nodesRef = useRef([]);
 
   const schedule = [
-    { tag: '08:30 AM', title: 'Registration & Check-in', desc: 'Arrive, register your team, and get settled.', right: false },
-    { tag: '09:00 AM', title: 'Opening Ceremony', desc: 'Welcome address, rules briefing, and track reveals.', right: true },
-    { tag: '09:30 AM', title: 'Hacking Begins ⚡', desc: 'Start ideating and building your energy solutions.', right: false },
+    { tag: '08:00 AM', title: 'Registration & Check-in', desc: 'Arrive, register your team, and get settled.', right: false },
+    { tag: '08:15 AM', title: 'Opening Ceremony', desc: 'Welcome address, rules briefing, and track reveals.', right: true },
+    { tag: '08:30 AM', title: 'Hacking Begins ⚡', desc: 'Start ideating and building your energy solutions.', right: false },
     { tag: '12:00 PM', title: 'Midway Check & Mentoring', desc: 'Progress reviews and mentor guidance.', right: true },
-    { tag: '01:00 PM', title: 'Final Submissions & Judging', desc: 'Submit your projects and present to judges.', right: false },
-    { tag: '01:30 PM', title: 'Awards & Closing', desc: 'Prize distribution and certificates for all!', right: true },
+    { tag: '02:30 PM', title: 'Final Submissions & Judging', desc: 'Submit your projects and present to judges.', right: false },
+    { tag: '03:00 PM', title: 'Awards & Closing', desc: 'Prize distribution and certificates for all!', right: true },
   ];
 
   useEffect(() => {
