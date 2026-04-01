@@ -78,7 +78,7 @@ const TimelineSection = () => {
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
             <ClockIcon />
           </div>
-          <p className="text-primary/70 text-xs font-bold tracking-[0.2em] mb-1 uppercase">APRIL 8, 2026</p>
+          <p className="text-primary/70 text-xs font-bold tracking-[0.2em] mb-1 uppercase">APRIL 21, 2026</p>
           <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter text-white">
             THE <span className="text-primary">SCHEDULE</span>
           </h2>

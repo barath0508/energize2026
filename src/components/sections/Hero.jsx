@@ -115,7 +115,7 @@ const Hero = () => {
       <div className="hero-content container mx-auto text-center relative z-20">
         {/* Bolt + Badge */}
         <div className="hero-badge inline-flex items-center gap-2 mb-6 px-5 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary text-sm font-bold tracking-widest backdrop-blur-md">
-          <span className="hero-bolt text-lg">⚡</span> APRIL 8, 2026 • 8:30 AM – 1:30 PM
+          <span className="hero-bolt text-lg">⚡</span> APRIL 21, 2026 • 8:30 AM – 2:30 PM
         </div>
         
         <h1 className="text-5xl md:text-7xl lg:text-[9rem] font-display font-black tracking-tighter text-white leading-none mb-2 relative overflow-hidden">
