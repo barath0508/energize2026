@@ -48,7 +48,7 @@ const FAQSection = () => {
     { q: "What is ENERGIZE 2026?", a: "ENERGIZE 2026 is an on-spot hackathon organized by the IETE Students' Forum at RIT, focused on sustainable energy solutions through software and hardware innovation." },
     { q: "What are the two tracks?", a: "Track 1: The Algorithmic Grid (Software) — Predictive AI, carbon trackers, gamified energy apps. Track 2: The Kinetic Circuit (Hardware) — Energy harvesting, smart meters, automated load balancing." },
     { q: "How much is the registration fee?", a: "The registration fee is ₹200 per team. Each team can have 2–4 members." },
-    { q: "Where and when is the event?", a: "April 21, 2026, from 8:30 AM to 2:30 PM at the Green Building, 4th Floor, Rajalakshmi Institute of Technology." },
+    { q: "Where and when is the event?", a: "April 21, 2026, from 8:30 AM to 3:00 PM at the Green Building, 4th Floor, Rajalakshmi Institute of Technology." },
     { q: "What can we win?", a: "Cash prizes for Winners and Runners-up! All participants receive certificates to boost their portfolios." },
     { q: "Do we need to bring our own hardware?", a: "For the Hardware track, yes — bring your own components and tools. Basic power supplies and workspace will be provided at the venue." },
   ];
