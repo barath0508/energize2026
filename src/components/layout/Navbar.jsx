@@ -3,6 +3,9 @@ import { Volume2, VolumeX, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import bgMusic from '../../assets/hayden-folker-cloud-nine.mp3';
 
+import ritLogo from '../../assets/rit-logo.png';
+import ieteLogo from '../../assets/iete-logo.png';
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
@@ -26,7 +29,7 @@ const Navbar = () => {
     const audio = audioRef.current;
     if (!audio) return;
     if (soundOn) {
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
     } else {
       audio.pause();
     }
@@ -60,17 +63,20 @@ const Navbar = () => {
   ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md border-white/5 py-4' : 'bg-transparent py-6'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${isScrolled ? 'bg-background/80 backdrop-blur-md border-white/5 py-4' : 'bg-transparent py-6'
+        }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3 relative z-50">
-          <a href="#" className="font-display font-black text-2xl tracking-tighter text-white flex items-center gap-2 group">
+        <div className="flex items-center gap-2 md:gap-4 relative z-50 shrink-0">
+          <div className="flex items-center gap-2">
+            <img src={ritLogo} alt="RIT Logo" className="h-7 md:h-10 w-auto object-contain" />
+          </div>
+          <div className="h-6 w-px bg-white/10 hidden md:block"></div>
+          <a href="#" className="font-display font-black text-lg md:text-2xl tracking-tighter text-white flex items-center gap-1 md:gap-2 group">
             <span className="text-primary group-hover:text-glow transition-all duration-300">⚡ ENERGIZE</span>
-            <span className="text-accent text-sm font-bold tracking-wider">2026</span>
+            <span className="text-accent text-xs md:text-sm font-bold tracking-wider">2026</span>
             <div className="h-1.5 w-1.5 bg-primary rounded-full animate-pulse-slow"></div>
           </a>
         </div>
@@ -78,8 +84,8 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className="text-xs font-bold tracking-widest text-zinc-400 hover:text-primary transition-colors relative group"
@@ -91,23 +97,26 @@ const Navbar = () => {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-4 relative z-50">
-          <button 
+        <div className="flex items-center gap-3 md:gap-4 relative z-50">
+          <img src={ieteLogo} alt="IETE Logo" className="h-12 md:h-15 w-auto object-contain brightness-0 invert" />
+          <div className="h-6 w-px bg-white/10 hidden md:block"></div>
+
+          <button
             onClick={() => setSoundOn(!soundOn)}
             className="p-2 text-zinc-400 hover:text-primary transition-colors border border-white/10 rounded-full hover:border-primary w-10 h-10 flex items-center justify-center bg-black/50 backdrop-blur-sm"
             aria-label="Toggle Sound"
           >
             {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
           </button>
-          
-          <button 
+
+          <button
             className="hidden lg:block px-6 py-2.5 bg-primary text-black font-bold text-sm hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wide"
           >
             Register Now
           </button>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="md:hidden p-2 text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -119,15 +128,15 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl"
           >
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
+              <a
+                key={link.name}
                 href={link.href}
                 className="text-lg font-display font-bold text-zinc-200 hover:text-primary"
                 onClick={(e) => handleNavClick(e, link.href)}
