@@ -39,9 +39,9 @@ const TeamSection = () => {
     { badge: 'EXECUTIVE TECHNICAL', name: 'BARATH R', role: '2nd year ECE A', contact: '+91 9442169681', link: 'https://www.linkedin.com/in/barath0508/' },
     { badge: 'EXECUTIVE TECHNICAL', name: 'SUJI V', role: '2nd year VLSI C', contact: '+91 7200831242', link: '#' },
     { badge: 'EXECUTIVE TECHNICAL', name: 'SUPRRAJA D', role: '2nd year VLSI C', contact: '+91 8870572444', link: '#' },
-    { badge: 'EXECUTIVE MEDIA AND CREATIVES', name: 'YOGANANDH', role: '2nd year ECE C', contact: '+91 9445630998', link: '#' },
+    { badge: 'EXECUTIVE MEDIA AND CREATIVES', name: 'YOGANANDH', role: '2nd year ECE C', contact: '+91 9445630998', link: 'https://www.linkedin.com/in/yoganandh-j-73358132b' },
     { badge: 'EXECUTIVE MEDIA AND CREATIVES', name: 'HARISUDHAN S', role: '2nd year VLSI A', contact: '+91 8072281106', link: '#' },
-    { badge: 'DOCUMENTATION', name: 'PREETHI B', role: '2nd year ECE B', contact: '+91 8838320465', link: '#' },
+    { badge: 'DOCUMENTATION', name: 'PREETHI B', role: '2nd year ECE B', contact: '+91 8838320465', link: 'https://www.linkedin.com/in/preethi-balaji-48857a32b' },
     { badge: 'DOCUMENTATION', name: 'JEEVITHA A G', role: '2nd year VLSI B', contact: '+91 8870978504', link: '#' },
 ];
 

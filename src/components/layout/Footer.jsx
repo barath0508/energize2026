@@ -51,9 +51,14 @@ const Footer = () => {
           Don't just watch the future happen — power it. Join ENERGIZE 2026 and build the grid of tomorrow.
         </p>
         
-        <button className="footer-cta-btn px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 hover:shadow-[0_0_40px_rgba(0,230,118,0.4)] hover:-translate-y-1 duration-300">
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-cta-btn px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 hover:shadow-[0_0_40px_rgba(0,230,118,0.4)] hover:-translate-y-1 duration-300 inline-block text-center"
+        >
           Register Now
-        </button>
+        </a>
 
         <div className="footer-bottom flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm text-zinc-500 gap-4">
           <div className="flex items-center gap-2 font-display font-black text-lg text-white">

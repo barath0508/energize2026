@@ -109,11 +109,14 @@ const Navbar = () => {
             {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
           </button>
 
-          <button
-            className="hidden lg:block px-6 py-2.5 bg-primary text-black font-bold text-sm hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wide"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:block px-6 py-2.5 bg-primary text-black font-bold text-sm hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wide inline-block text-center"
           >
             Register Now
-          </button>
+          </a>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -144,9 +147,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="w-full px-6 py-3 bg-primary text-black font-bold transition-all rounded-sm active:scale-95 mt-4">
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center px-6 py-3 bg-primary text-black font-bold transition-all rounded-sm active:scale-95 mt-4 block"
+            >
               REGISTER NOW
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

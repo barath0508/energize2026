@@ -156,9 +156,14 @@ const Hero = () => {
         </div>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="hero-btn w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] hover:-translate-y-0.5 duration-300">
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeuhrDqpushe7oVBLqQPgpyJSZt4GlL7cEsEHEZ3ZDuAfGUyw/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-btn w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] hover:-translate-y-0.5 duration-300 inline-block text-center"
+          >
             ⚡ Register Now
-          </button>
+          </a>
           <button className="hero-btn w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-all rounded-sm active:scale-95 uppercase tracking-wider hover:border-primary/50 hover:-translate-y-0.5 duration-300">
             View Tracks
           </button>
