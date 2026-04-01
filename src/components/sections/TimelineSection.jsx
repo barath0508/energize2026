@@ -72,7 +72,7 @@ const TimelineSection = () => {
   }, []);
 
   return (
-    <section id="schedule" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5">
+    <section id="schedule" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12">
         <div className="schedule-header flex flex-col items-center text-center mb-6">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
@@ -83,7 +83,7 @@ const TimelineSection = () => {
             THE <span className="text-primary">SCHEDULE</span>
           </h2>
         </div>
-        <p className="text-zinc-400 mb-16 max-w-xl mx-auto text-center schedule-desc">A power-packed 5 hours of innovation.</p>
+        <p className="text-zinc-400 mb-10 md:mb-16 max-w-xl mx-auto text-center schedule-desc">A power-packed 6 hours of innovation.</p>
 
         <div className="relative max-w-3xl mx-auto pl-8 md:pl-0">
           <div className="absolute top-0 bottom-0 left-8 md:left-1/2 md:-translate-x-1/2 w-0.5 bg-white/10"></div>
@@ -103,7 +103,7 @@ const TimelineSection = () => {
                 <span className="absolute top-1/2 left-1/2 w-5 h-5 rounded-full border-2 border-primary animate-node-pulse"></span>
               </div>
               
-              <div className="timeline-card bg-carbon border border-white/5 p-6 rounded-lg hover:border-primary/30 transition-all duration-500 group">
+              <div className="timeline-card bg-carbon border border-white/5 p-4 md:p-6 rounded-lg hover:border-primary/30 transition-all duration-500 group">
                 <span className="text-primary text-xs font-bold tracking-widest font-mono">{item.tag}</span>
                 <h4 className="text-xl font-display font-bold text-white mt-1 mb-2 group-hover:text-primary transition-colors duration-300">{item.title}</h4>
                 <div className="text-zinc-500 text-sm">{item.desc}</div>

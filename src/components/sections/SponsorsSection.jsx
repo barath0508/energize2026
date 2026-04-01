@@ -58,7 +58,7 @@ const SponsorsSection = () => {
   const row2 = sponsors.slice(6);
 
   return (
-    <section id="sponsors" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-black overflow-hidden">
+    <section id="sponsors" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-black overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl mb-12">
         <div className="sponsors-header flex flex-col items-center text-center mb-6">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">

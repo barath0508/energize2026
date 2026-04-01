@@ -95,7 +95,7 @@ const Domains = () => {
   }, []);
 
   return (
-    <section id="tracks" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-carbon/50 overflow-hidden">
+    <section id="tracks" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-carbon/50 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div ref={headlineRef} className="flex flex-col items-center text-center mb-6 domains-header">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
@@ -113,7 +113,7 @@ const Domains = () => {
             <div 
               key={i}
               ref={el => cardsRef.current[i] = el}
-              className="group relative bg-[#0a1510] border border-white/10 p-8 md:p-10 rounded-lg overflow-hidden hover:border-primary transition-colors duration-300 transform-gpu cursor-default"
+              className="group relative bg-[#0a1510] border border-white/10 p-6 md:p-10 rounded-lg overflow-hidden hover:border-primary transition-colors duration-300 transform-gpu cursor-default"
               style={{ transformStyle: 'preserve-3d' }}
               onMouseMove={(e) => handleMouseMove(e, i)}
               onMouseLeave={() => handleMouseLeave(i)}

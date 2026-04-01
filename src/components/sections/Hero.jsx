@@ -111,7 +111,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" ref={containerRef} className="min-h-screen relative flex items-center justify-center pt-20 px-6 overflow-hidden">
+    <section id="hero" ref={containerRef} className="min-h-screen relative flex items-center justify-center pt-16 md:pt-20 px-4 md:px-6 overflow-hidden">
       {/* Background Image */}
       <div
         className="hero-bg-img absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-screen scale-110"
@@ -121,7 +121,7 @@ const Hero = () => {
 
       <div className="hero-content container mx-auto text-center relative z-20">
         {/* Bolt + Badge */}
-        <div className="hero-badge inline-flex items-center gap-2 mb-6 px-5 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary text-sm font-bold tracking-widest backdrop-blur-md">
+        <div className="hero-badge inline-flex items-center gap-2 mb-4 md:mb-6 px-4 md:px-5 py-1.5 md:py-2 border border-primary/30 rounded-full bg-primary/10 text-primary text-[11px] md:text-sm font-bold tracking-widest backdrop-blur-md">
           <span className="hero-bolt text-lg">⚡</span> APRIL 21, 2026 • 8:30 AM – 3:00 PM
         </div>
 
@@ -145,7 +145,7 @@ const Hero = () => {
           Bridging Bytes & Bricks
         </p>
 
-        <p className="hero-desc text-base md:text-lg text-zinc-400 max-w-2xl mx-auto mb-8 font-medium">
+        <p className="hero-desc text-sm md:text-lg text-zinc-400 max-w-2xl mx-auto mb-6 md:mb-8 font-medium px-2">
           Ready to build the future of energy? The IETE Students' Forum at Rajalakshmi Institute of Technology invites you to a high-stakes, on-spot hackathon where code meets carbon neutrality.
         </p>
 
@@ -156,7 +156,7 @@ const Hero = () => {
             { icon: '👥', text: '2–4 Members' },
             { icon: '💰', text: '₹200 per team' },
           ].map((pill, i) => (
-            <div key={i} className="hero-pill px-4 py-2 bg-carbon border border-white/10 rounded-full text-sm text-zinc-300 flex items-center gap-2 backdrop-blur-sm">
+            <div key={i} className="hero-pill px-3 md:px-4 py-1.5 md:py-2 bg-carbon border border-white/10 rounded-full text-xs md:text-sm text-zinc-300 flex items-center gap-2 backdrop-blur-sm">
               <span>{pill.icon}</span> {pill.text}
             </div>
           ))}

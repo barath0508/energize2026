@@ -55,11 +55,11 @@ const Mission = () => {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5">
+    <section id="about" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5">
       <div ref={lineRef} className="absolute top-0 left-0 h-px bg-gradient-to-r from-primary via-primary/50 to-transparent" style={{ width: 0 }}></div>
 
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <div ref={textRef}>
             <div className="flex flex-col items-center text-center mb-6 mission-header">
               <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
@@ -86,7 +86,7 @@ const Mission = () => {
                 <div 
                   key={i} 
                   ref={el => statsRef.current[i] = el}
-                  className="bg-carbon border border-white/5 p-8 rounded-lg text-center hover:border-primary/50 transition-colors group cursor-default"
+                  className="bg-carbon border border-white/5 p-5 md:p-8 rounded-lg text-center hover:border-primary/50 transition-colors group cursor-default"
                   style={{ transformStyle: 'preserve-3d' }}
                   onMouseMove={(e) => handleMouseMove(e, statsRef.current[i])}
                   onMouseLeave={() => handleMouseLeave(statsRef.current[i])}

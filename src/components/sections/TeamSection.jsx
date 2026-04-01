@@ -70,9 +70,9 @@ const TeamSection = () => {
   }, []);
 
   return (
-    <section id="team" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07]">
+    <section id="team" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07]">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-        <div ref={headerRef} className="flex flex-col items-center text-center mb-16">
+        <div ref={headerRef} className="flex flex-col items-center text-center mb-8 md:mb-16">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
             <UsersIcon />
           </div>
@@ -87,7 +87,7 @@ const TeamSection = () => {
             <div
               key={i}
               ref={el => cardsRef.current[i] = el}
-              className="team-card relative bg-transparent border border-white/5 p-8 rounded-sm hover:border-primary/40 hover:shadow-[0_0_25px_rgba(0,230,118,0.08)] hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default"
+              className="team-card relative bg-transparent border border-white/5 p-5 md:p-8 rounded-sm hover:border-primary/40 hover:shadow-[0_0_25px_rgba(0,230,118,0.08)] hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default"
             >
               <div className="flex justify-between items-start mb-8">
 
