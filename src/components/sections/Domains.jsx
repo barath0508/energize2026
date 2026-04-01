@@ -25,8 +25,8 @@ const Domains = () => {
       icon: '💻',
       features: ['Predictive AI Models', 'Carbon Footprint Trackers', 'Gamified Energy Apps', 'Smart Grid Analytics'],
       coordinators: [
-        { name: 'HARINI S', phone: '+91 6383078169' },
-        { name: 'Software Coord 2', phone: '+91 0000000000' }
+        { name: 'PREETHI B', phone: '+91 8838320465' },
+        { name: 'SASIKUMAR M', phone: '+91  9361957420' }
       ]
     },
     { 
@@ -38,8 +38,8 @@ const Domains = () => {
       icon: '⚡',
       features: ['Energy Harvesting', 'Smart Meters', 'Automated Load Balancing', 'IoT Sensors'],
       coordinators: [
-        { name: 'JEYANANDH V S', phone: '+91 9043580630' },
-        { name: 'Hardware Coord 2', phone: '+91 0000000000' }
+        { name: 'SUJI V', phone: '+91 7200831242' },
+        { name: 'SUPRRAJA D', phone: '+91 8870572444' }
       ]
     },
   ];

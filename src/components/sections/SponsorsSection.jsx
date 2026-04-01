@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ritLogo from '../../assets/rit-logo.png';
+import ieteLogo from '../../assets/iete-logo.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const sponsors = [
-  'IETE ISF', 'RIT Chennai',  
+  { name: 'RIT Chennai', img: ritLogo, filterClass: 'brightness-100' },
+  { name: 'IETE ISF', img: ieteLogo, filterClass: 'brightness-0 invert' },
 ];
 
 const MarqueeRow = ({ items, reverse = false, speed = 30 }) => (
@@ -17,12 +20,16 @@ const MarqueeRow = ({ items, reverse = false, speed = 30 }) => (
         width: 'max-content'
       }}
     >
-      {[...items, ...items].map((name, i) => (
+      {[...items, ...items, ...items, ...items].map((item, i) => (
         <div 
           key={i}
-          className="h-20 w-44 bg-carbon border border-white/10 rounded-sm flex items-center justify-center shrink-0 hover:border-primary/50 hover:bg-[#0a1510] hover:shadow-[0_0_20px_rgba(0,230,118,0.15)] hover:scale-105 transition-all duration-300 cursor-pointer group/item"
+          className="h-20 w-48 bg-carbon border border-white/10 rounded-sm flex items-center justify-center shrink-0 hover:border-primary/50 hover:bg-[#0a1510] hover:shadow-[0_0_20px_rgba(0,230,118,0.15)] hover:scale-105 transition-all duration-300 cursor-pointer group/item px-4"
         >
-          <span className="font-mono text-zinc-500 text-sm font-bold uppercase tracking-widest group-hover/item:text-primary transition-colors duration-300">{name}</span>
+          {item.img ? (
+            <img src={item.img} alt={item.name} className={`max-h-10 max-w-full object-contain transition-all duration-300 ${item.filterClass || ''}`} />
+          ) : (
+            <span className="font-mono text-zinc-500 text-sm font-bold uppercase tracking-widest group-hover/item:text-primary transition-colors duration-300">{item.name}</span>
+          )}
         </div>
       ))}
     </div>
