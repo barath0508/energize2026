@@ -105,7 +105,7 @@ const FAQSection = () => {
   }, [openIndex]);
 
   return (
-    <section id="faqs" ref={sectionRef} className="py-24 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07]">
+    <section id="faqs" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07]">
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
         <div className="faq-header flex flex-col items-center text-center mb-6">
           <div className="p-3 border border-white/10 rounded-sm bg-black/50 mb-4">
@@ -121,7 +121,7 @@ const FAQSection = () => {
         <p className="text-zinc-400 mb-16 max-w-xl mx-auto text-center faq-desc">Everything you need to know before powering up.</p>
 
         {/* Rules Grid */}
-        <div ref={rulesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+        <div ref={rulesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12 md:mb-20">
           {rules.map((rule, idx) => (
             <div key={idx} className="rule-card flex gap-4 p-5 bg-black/40 border border-white/5 rounded-lg hover:border-primary/30 transition-colors duration-300">
               <div className="shrink-0 mt-0.5">

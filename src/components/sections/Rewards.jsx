@@ -71,7 +71,7 @@ const RewardCard = ({
   const theme = getThemeClasses();
 
   return (
-    <div className={`reward-card-anim relative bg-transparent border border-white/5 p-8 rounded-sm ${theme.hoverBorder} ${theme.hoverShadow} hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default ${className}`}>
+    <div className={`reward-card-anim relative bg-transparent border border-white/5 p-6 md:p-8 rounded-sm ${theme.hoverBorder} ${theme.hoverShadow} hover:scale-[1.02] transition-all duration-500 flex flex-col h-full group cursor-default ${className}`}>
 
       {/* Top Flex Row */}
       <div className="flex justify-between items-start mb-10">
@@ -85,7 +85,7 @@ const RewardCard = ({
 
       {/* Middle Block */}
       <div className="text-left mb-8">
-        <h3 className={`text-4xl md:text-5xl font-display font-black mb-3 transition-all duration-300 ${theme.amountColor}`}>
+        <h3 className={`text-3xl md:text-5xl font-display font-black mb-3 transition-all duration-300 ${theme.amountColor}`}>
           {amount}
         </h3>
         <p className="text-zinc-300 text-xs md:text-sm tracking-wide uppercase font-bold">{subtitle}</p>
@@ -212,7 +212,7 @@ const Rewards = () => {
   );
 
   return (
-    <section id="prizes" ref={sectionRef} className="py-24 md:py-32 lg:py-40 relative z-10 border-t border-white/5 bg-gradient-to-b from-black/90 via-surface to-black/90 overflow-hidden pointer-events-auto">
+    <section id="prizes" ref={sectionRef} className="py-16 md:py-32 lg:py-40 relative z-10 border-t border-white/5 bg-gradient-to-b from-black/90 via-surface to-black/90 overflow-hidden pointer-events-auto">
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[1000px] bg-primary/10 rounded-full blur-[140px] pointer-events-none opacity-40 mix-blend-screen" />
 
