@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/layout/Navbar';
 import FloatingCalendar from './components/layout/FloatingCalendar';
 import Hero from './components/sections/Hero';
@@ -71,6 +72,7 @@ function App() {
 
       <Footer />
       <FloatingCalendar />
+      <Analytics />
     </div>
   );
 }
