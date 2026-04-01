@@ -67,9 +67,13 @@ const Footer = () => {
           </div>
           <p>© 2026 IETE Students' Forum, RIT. All rights reserved.</p>
           <div className="flex gap-4">
-            {['Instagram', 'LinkedIn', 'Email'].map(name => (
-              <a key={name} href="#" className="hover:text-primary transition-colors relative group">
-                {name}
+            {[
+              { name: 'Instagram', href: 'https://www.instagram.com/ritchennai?igsh=MWt2NDhpd2gzbjQ2Mw==' },
+              { name: 'LinkedIn', href: 'https://www.linkedin.com/school/rit-chennai/' },
+              { name: 'Email', href: '#' }
+            ].map(link => (
+              <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors relative group">
+                {link.name}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}

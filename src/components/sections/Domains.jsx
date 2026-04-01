@@ -21,9 +21,13 @@ const Domains = () => {
       number: '01',
       title: 'The Algorithmic Grid', 
       type: 'Software Track',
-      desc: 'Predictive AI, carbon trackers, & gamified energy apps. Build intelligent software solutions for a sustainable future.',
+      desc: 'Predictive AI & carbon trackers. Build intelligent software solutions for a sustainable future.',
       icon: '💻',
-      features: ['Predictive AI Models', 'Carbon Footprint Trackers', 'Gamified Energy Apps', 'Smart Grid Analytics']
+      features: ['Predictive AI Models', 'Carbon Footprint Trackers', 'Gamified Energy Apps', 'Smart Grid Analytics'],
+      coordinators: [
+        { name: 'Software Coord 1', phone: '+91 0000000000' },
+        { name: 'Software Coord 2', phone: '+91 0000000000' }
+      ]
     },
     { 
       id: 'HARDWARE', 
@@ -32,7 +36,11 @@ const Domains = () => {
       type: 'Hardware Track',
       desc: 'Energy harvesting, smart meters, & automated load balancing. Engineer circuits that power tomorrow.',
       icon: '⚡',
-      features: ['Energy Harvesting', 'Smart Meters', 'Automated Load Balancing', 'IoT Sensors']
+      features: ['Energy Harvesting', 'Smart Meters', 'Automated Load Balancing', 'IoT Sensors'],
+      coordinators: [
+        { name: 'Hardware Coord 1', phone: '+91 0000000000' },
+        { name: 'Hardware Coord 2', phone: '+91 0000000000' }
+      ]
     },
   ];
 
@@ -123,12 +131,31 @@ const Domains = () => {
                 <p className="text-zinc-400 group-hover:text-zinc-300 transition-colors mb-6">{track.desc}</p>
                 
                 {/* Feature tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {track.features.map((feat, j) => (
                     <span key={j} className="px-3 py-1 text-xs font-bold bg-primary/5 border border-primary/20 text-primary/70 rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-all">
                       {feat}
                     </span>
                   ))}
+                </div>
+
+                {/* Coordinators Info */}
+                <div className="pt-4 border-t border-white/5 flex flex-col gap-2 group-hover:border-primary/20 transition-colors relative z-20">
+                  <p className="text-[10px] text-zinc-500 font-bold tracking-wider uppercase mb-1">Track Coordinators</p>
+                  <div className="flex flex-col gap-2">
+                    {track.coordinators.map((coord, idx) => (
+                      <div key={idx} className="flex items-center justify-between">
+                        <p className="text-sm text-zinc-200 font-medium group-hover:text-primary transition-colors">{coord.name}</p>
+                        <a 
+                          href={`tel:${coord.phone.replace(/\s/g, '')}`}
+                          className="flex items-center gap-2 px-3 py-1.5 rounded bg-white/5 hover:bg-primary/10 border border-transparent hover:border-primary/30 text-[11px] font-semibold tracking-wide text-zinc-300 hover:text-primary transition-all"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                          {coord.phone}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               
