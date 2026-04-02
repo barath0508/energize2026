@@ -11,42 +11,53 @@ const Navbar = () => {
   const [soundOn, setSoundOn] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const audioRef = useRef(null);
+  const soundOnRef = useRef(true); // mirror of soundOn for async callbacks
 
-  // Initialize audio
+  // Initialize audio and autoplay using muted trick
+  // (browsers allow muted autoplay; we unmute immediately after)
   useEffect(() => {
     const audio = new Audio(bgMusic);
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = 0.8;
+    audio.currentTime = 35;
+    audio.muted = true; // must start muted for autoplay to be allowed
     audioRef.current = audio;
+
+    audio.play()
+      .then(() => {
+        // Playback started — unmute right away
+        audio.muted = false;
+      })
+      .catch(() => {
+        // Even muted autoplay blocked (rare); fall back to interaction unlock
+        const unlock = () => {
+          audio.muted = false;
+          audio.play().catch(() => {});
+          document.removeEventListener('click', unlock);
+          document.removeEventListener('keydown', unlock);
+        };
+        document.addEventListener('click', unlock);
+        document.addEventListener('keydown', unlock);
+      });
+
     return () => {
       audio.pause();
       audio.src = '';
     };
   }, []);
 
-  // Auto-play on first user interaction (browsers block autoplay before interaction)
+  // Keep ref in sync with state
   useEffect(() => {
-    if (!soundOn) return;
-    const startAudio = () => {
-      const audio = audioRef.current;
-      if (audio) audio.play().catch(() => {});
-      window.removeEventListener('click', startAudio);
-      window.removeEventListener('keydown', startAudio);
-    };
-    window.addEventListener('click', startAudio);
-    window.addEventListener('keydown', startAudio);
-    return () => {
-      window.removeEventListener('click', startAudio);
-      window.removeEventListener('keydown', startAudio);
-    };
-  }, []);
+    soundOnRef.current = soundOn;
+  }, [soundOn]);
 
-  // Play / pause based on soundOn
+  // Play / pause based on soundOn toggle
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
     if (soundOn) {
-      audio.play().catch(() => { });
+      audio.muted = false;
+      audio.play().catch(() => {});
     } else {
       audio.pause();
     }
