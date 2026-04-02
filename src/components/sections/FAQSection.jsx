@@ -38,9 +38,11 @@ const FAQSection = () => {
   const rules = [
     "Each team must have 2–4 members only.",
     "Teams must choose one track (Software or Hardware).",
-    "The hackathon must be developed based on the theme: Smart Energy.",
+    "The project must be strictly based on the given problem statement.",
     "Participants must bring their own required materials (laptop/components).",
     "The hackathon is on-spot and must be completed within the given time.",
+    "Hardware problem statements will be announced earlier before the event.",
+    "The hackathon must be developed based on the theme: Smart Energy.",
     "Evaluation is based on idea, innovation, prototype, and presentation; judges' decision is final."
   ];
 

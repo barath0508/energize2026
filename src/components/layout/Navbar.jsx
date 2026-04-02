@@ -8,7 +8,7 @@ import ieteLogo from '../../assets/iete-logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [soundOn, setSoundOn] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const audioRef = useRef(null);
 
@@ -21,6 +21,23 @@ const Navbar = () => {
     return () => {
       audio.pause();
       audio.src = '';
+    };
+  }, []);
+
+  // Auto-play on first user interaction (browsers block autoplay before interaction)
+  useEffect(() => {
+    if (!soundOn) return;
+    const startAudio = () => {
+      const audio = audioRef.current;
+      if (audio) audio.play().catch(() => {});
+      window.removeEventListener('click', startAudio);
+      window.removeEventListener('keydown', startAudio);
+    };
+    window.addEventListener('click', startAudio);
+    window.addEventListener('keydown', startAudio);
+    return () => {
+      window.removeEventListener('click', startAudio);
+      window.removeEventListener('keydown', startAudio);
     };
   }, []);
 

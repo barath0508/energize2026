@@ -226,7 +226,7 @@ const Rewards = () => {
           </div>
           <p className="text-primary/70 text-xs font-bold tracking-[0.2em] mb-1 uppercase">PRIZES & REWARDS</p>
           <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter text-white uppercase">
-            HONOR AND REWARDS <span className="text-primary">WHO ANSWER</span> THE CALL.
+            <span className="text-primary">HONOR </span>  AND <span className="text-primary">REWARDS</span>
           </h2>
         </div>
         <p className="text-zinc-400 mb-16 max-w-xl mx-auto text-center rewards-desc">Awards given separately for Software & Hardware Tracks.</p>
