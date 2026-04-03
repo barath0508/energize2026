@@ -46,17 +46,37 @@ const Domains = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(['.domains-header > *', '.domains-desc'], {
-        opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: 'power3.out', 
+      // Track icon pop
+      gsap.from('.domains-header .p-3', {
+        opacity: 0, y: -30, scale: 0.5,
+        duration: 1, ease: 'elastic.out(1, 0.5)',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
       });
 
+      // Header slide reveal
+      gsap.fromTo('.domains-header h2',
+        { clipPath: 'inset(0 100% 0 0)', opacity: 0, x: -60 },
+        { 
+          clipPath: 'inset(0 0% 0 0)', opacity: 1, x: 0, 
+          duration: 1.2, ease: 'power4.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
+        }
+      );
+
+      // Desc fade
+      gsap.from('.domains-desc', {
+        opacity: 0, y: 20, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
+      });
+
+      // Cards elastic stagger
       gsap.fromTo(cardsRef.current,
-        { opacity: 0, clipPath: 'inset(100% 0 0 0)' },
+        { opacity: 0, scale: 0.8, y: 50 },
         {
-          opacity: 1, clipPath: 'inset(0% 0 0 0)',
-          duration: 0.9, stagger: 0.2, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', toggleActions: 'play none none reverse' }
+          opacity: 1, scale: 1, y: 0,
+          duration: 1, stagger: 0.2, ease: 'elastic.out(1.2, 0.5)',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
+          clearProps: 'all'
         }
       );
     }, sectionRef);

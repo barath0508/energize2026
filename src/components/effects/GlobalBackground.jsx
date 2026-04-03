@@ -6,8 +6,6 @@ const GlobalBackground = () => {
 
   // Particle system — electric green energy particles
   useEffect(() => {
-    if (window.innerWidth < 768) return; // Disable on mobile to prevent main-thread INP block
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -61,7 +59,8 @@ const GlobalBackground = () => {
       }
     }
 
-    for (let i = 0; i < 80; i++) {
+    const numParticles = window.innerWidth < 768 ? 30 : 80;
+    for (let i = 0; i < numParticles; i++) {
       const p = new Particle();
       p.y = Math.random() * canvas.height;
       particles.push(p);

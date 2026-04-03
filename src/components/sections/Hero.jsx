@@ -9,36 +9,34 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const isMobile = window.innerWidth < 768;
-      
       // Badge float in
       gsap.from('.hero-badge', {
         opacity: 0, y: -30, scale: 0.8,
-        duration: 1, delay: isMobile ? 0 : 0.2, ease: 'elastic.out(1, 0.5)'
+        duration: 1, delay: 0.2, ease: 'elastic.out(1, 0.5)'
       });
 
       // Continuous badge float
       gsap.to('.hero-badge', {
         y: -5, rotation: 0.5,
-        duration: 3, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: isMobile ? 1.0 : 1.2
+        duration: 3, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.2
       });
 
       // Title line 1 — clip & slide reveal
       gsap.fromTo('.hero-title-1',
         { clipPath: 'inset(0 100% 0 0)', opacity: 0, x: -60 },
-        { clipPath: 'inset(0 0% 0 0)', opacity: 1, x: 0, duration: 1.2, delay: isMobile ? 0 : 0.4, ease: 'power4.out' }
+        { clipPath: 'inset(0 0% 0 0)', opacity: 1, x: 0, duration: 1.2, delay: 0.4, ease: 'power4.out' }
       );
 
       // Title line 2 — clip & slide reveal
       gsap.fromTo('.hero-title-2',
         { clipPath: 'inset(0 0 0 100%)', opacity: 0, x: 60 },
-        { clipPath: 'inset(0 0 0 0%)', opacity: 1, x: 0, duration: 1.2, delay: isMobile ? 0.2 : 0.7, ease: 'power4.out' }
+        { clipPath: 'inset(0 0 0 0%)', opacity: 1, x: 0, duration: 1.2, delay: 0.7, ease: 'power4.out' }
       );
 
       // Subtitle
       gsap.fromTo('.hero-subtitle',
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, delay: isMobile ? 0.4 : 1.0, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 0.8, delay: 1.0, ease: 'power3.out' }
       );
 
       // Lightning bolt pulse

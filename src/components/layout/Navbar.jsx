@@ -32,7 +32,7 @@ const Navbar = () => {
         // Even muted autoplay blocked (rare); fall back to interaction unlock
         const unlock = () => {
           audio.muted = false;
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
           document.removeEventListener('click', unlock);
           document.removeEventListener('keydown', unlock);
         };
@@ -57,7 +57,7 @@ const Navbar = () => {
     if (!audio) return;
     if (soundOn) {
       audio.muted = false;
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
     } else {
       audio.pause();
     }
@@ -91,21 +91,22 @@ const Navbar = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${isScrolled ? 'bg-background/80 backdrop-blur-md border-white/5 py-4' : 'bg-transparent py-6'
-        }`}
-    >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${isScrolled ? 'bg-background/80 backdrop-blur-md border-white/5 py-4' : 'bg-transparent py-6'
+          }`}
+      >
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 md:gap-4 relative z-50 shrink-0">
+        <div className="flex items-center gap-3 md:gap-5 relative z-50 shrink-0">
           <div className="flex items-center gap-2">
-            <img src={ritLogo} alt="RIT Logo" className="h-7 md:h-10 w-auto object-contain" />
+            <img src={ritLogo} alt="RIT Logo" className="h-8 sm:h-9 md:h-12 w-auto object-contain" />
           </div>
-          <div className="h-6 w-px bg-white/10 hidden md:block"></div>
-          <a href="#" className="font-display font-black text-lg md:text-2xl tracking-tighter text-white flex items-center gap-1 md:gap-2 group">
+          <div className="h-7 w-px bg-white/10 hidden md:block"></div>
+          <a href="#" className="font-display font-black text-base sm:text-lg md:text-2xl tracking-tighter text-white flex items-center gap-1 md:gap-2 group">
             <span className="text-primary group-hover:text-glow transition-all duration-300">⚡ ENERGIZE</span>
-            <span className="text-accent text-xs md:text-sm font-bold tracking-wider">2026</span>
-            <div className="h-1.5 w-1.5 bg-primary rounded-full animate-pulse-slow"></div>
+            <span className="text-accent text-xs md:text-sm font-bold tracking-wider hidden sm:inline-block">2026</span>
+            <div className="h-1.5 w-1.5 bg-primary rounded-full animate-pulse-slow hidden sm:block"></div>
           </a>
         </div>
 
@@ -125,16 +126,16 @@ const Navbar = () => {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3 md:gap-4 relative z-50">
-          <img src={ieteLogo} alt="IETE Logo" className="h-12 md:h-15 w-auto object-contain brightness-0 invert" />
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 relative z-50">
+          <img src={ieteLogo} alt="IETE Logo" className="h-10 sm:h-12 md:h-15 w-auto object-contain brightness-0 invert hidden min-[400px]:block" />
           <div className="h-6 w-px bg-white/10 hidden md:block"></div>
 
           <button
             onClick={() => setSoundOn(!soundOn)}
-            className="p-2 text-zinc-400 hover:text-primary transition-colors border border-white/10 rounded-full hover:border-primary w-10 h-10 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            className="p-1.5 sm:p-2 text-zinc-400 hover:text-primary transition-colors border border-white/10 rounded-full hover:border-primary w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-black/50 backdrop-blur-sm"
             aria-label="Toggle Sound"
           >
-            {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            {soundOn ? <Volume2 size={14} className="sm:w-4 sm:h-4" /> : <VolumeX size={14} className="sm:w-4 sm:h-4" />}
           </button>
 
           <a
@@ -155,38 +156,68 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Premium Mobile Menu Overlay - OUTSIDE header to prevent bounding box issues */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black z-40 flex flex-col px-6 pt-28 pb-10 md:hidden"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-lg font-display font-bold text-zinc-200 hover:text-primary"
-                onClick={(e) => handleNavClick(e, link.href)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="https://forms.gle/EXV3PpsJzkqULSKB6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-center px-6 py-3 bg-primary text-black font-bold transition-all rounded-sm active:scale-95 mt-4 block"
+            <div className="flex flex-col gap-6 flex-1 mt-4">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  className="text-3xl font-display font-black tracking-tighter text-zinc-300 hover:text-white flex items-center justify-between group border-b border-white/5 pb-4"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">{link.name}</span>
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </motion.a>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="mt-8 pb-8"
             >
-              REGISTER NOW
-            </a>
+              {/* IETE Logo for very small screens where it was hidden in the header */}
+              <div className="flex justify-center mb-8 min-[400px]:hidden">
+                <img src={ieteLogo} alt="IETE Logo" className="h-10 w-auto object-contain brightness-0 invert opacity-50" />
+              </div>
+
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-xs text-zinc-500 font-bold tracking-widest uppercase">Quick Action</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                  <span className="text-xs text-primary/80 uppercase tracking-widest">Live</span>
+                </div>
+              </div>
+              <a
+                href="https://forms.gle/EXV3PpsJzkqULSKB6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center px-8 py-5 bg-primary/10 border border-primary/30 text-primary font-bold text-lg hover:bg-primary hover:text-black transition-all rounded-sm active:scale-[0.98] block uppercase tracking-widest"
+              >
+                SECURE YOUR SPOT
+              </a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 
