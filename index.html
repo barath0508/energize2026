@@ -5,10 +5,26 @@
     <link rel="icon" type="image/png" href="/icon logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ENERGIZE 2026 — Bridging Bytes & Bricks | IETE ISF, RIT</title>
-    <meta name="description" content="ENERGIZE 2026: A high-stakes on-spot hackathon by IETE Students' Forum at RIT. Code meets carbon neutrality.  April21, 2026." />
+    <meta name="description" content="ENERGIZE 2026: A high-stakes on-spot hackathon by IETE Students' Forum at RIT. Code meets carbon neutrality.  April 21, 2026." />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet" />
+    <!-- Preload Hero LCP -->
+    <link rel="preload" as="image" href="/hero.png" />
+    <style>
+      body { background-color: #050a08; margin: 0; color: #f4f4f5; font-family: 'Inter', sans-serif; }
+      #initial-loader { display: flex; align-items: center; justify-content: center; height: 100vh; font-weight: 800; color: #00e676; letter-spacing: 4px; text-transform: uppercase; font-family: 'Outfit', sans-serif; font-size: 14px; }
+      .loader-glow { text-shadow: 0 0 10px rgba(0, 230, 118, 0.4); animation: init-pulse 1.5s infinite; }
+      @keyframes init-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="initial-loader">
+        <span class="loader-glow">INIT_ENERGIZE_2026<span style="opacity:0.5">...</span></span>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/layout/Navbar';
-import FloatingMap from './components/layout/FloatingCalendar';
 import Hero from './components/sections/Hero';
 import Mission from './components/sections/Mission';
-import Domains from './components/sections/Domains';
-import TimelineSection from './components/sections/TimelineSection';
-import Rewards from './components/sections/Rewards';
-import SponsorsSection from './components/sections/SponsorsSection';
-import GallerySection from './components/sections/GallerySection';
-import TeamSection from './components/sections/TeamSection';
-import FAQSection from './components/sections/FAQSection';
-import Footer from './components/layout/Footer';
 import GlobalBackground from './components/effects/GlobalBackground';
+
+// Lazy load below-the-fold components to improve mobile INP and Hydration
+const Domains = lazy(() => import('./components/sections/Domains'));
+const TimelineSection = lazy(() => import('./components/sections/TimelineSection'));
+const Rewards = lazy(() => import('./components/sections/Rewards'));
+const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection'));
+const GallerySection = lazy(() => import('./components/sections/GallerySection'));
+const TeamSection = lazy(() => import('./components/sections/TeamSection'));
+const FAQSection = lazy(() => import('./components/sections/FAQSection'));
+const Footer = lazy(() => import('./components/layout/Footer'));
+const FloatingMap = lazy(() => import('./components/layout/FloatingCalendar'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,17 +64,21 @@ function App() {
       <main className="relative z-10 flex flex-col w-full">
         <Hero />
         <Mission />
-        <Domains />
-        <TimelineSection />
-        <Rewards />
-        <SponsorsSection />
-        <GallerySection />
-        <FAQSection />
-        <TeamSection />
+        <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
+          <Domains />
+          <TimelineSection />
+          <Rewards />
+          <SponsorsSection />
+          <GallerySection />
+          <FAQSection />
+          <TeamSection />
+        </Suspense>
       </main>
 
-      <Footer />
-      <FloatingMap />
+      <Suspense fallback={null}>
+        <Footer />
+        <FloatingMap />
+      </Suspense>
       <Analytics />
       <SpeedInsights />
     </div>

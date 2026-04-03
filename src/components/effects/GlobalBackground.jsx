@@ -6,6 +6,8 @@ const GlobalBackground = () => {
 
   // Particle system — electric green energy particles
   useEffect(() => {
+    if (window.innerWidth < 768) return; // Disable on mobile to prevent main-thread INP block
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -83,6 +85,8 @@ const GlobalBackground = () => {
 
   // Cursor glow follower
   useEffect(() => {
+    if (window.innerWidth < 768) return; // Disable on mobile
+
     const cursor = cursorRef.current;
     if (!cursor) return;
     let mouseX = -500, mouseY = -500;
