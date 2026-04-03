@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef } from 'react';
+import { MapPin, Users, Ticket } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -59,12 +60,12 @@ const Hero = () => {
       // Description fade
       gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1.2, ease: 'power3.out' });
 
-      // Info pills stagger
-      gsap.fromTo('.hero-pill',
-        { opacity: 0, y: 30, scale: 0.8 },
+      // Info chunks stagger
+      gsap.fromTo('.hero-stat',
+        { opacity: 0, y: 30, scale: 0.9 },
         {
           opacity: 1, y: 0, scale: 1,
-          duration: 0.8, delay: 1.4, stagger: 0.15,
+          duration: 0.8, delay: 1.4, stagger: 0.2,
           ease: 'back.out(1.5)', clearProps: 'all'
         }
       );
@@ -148,17 +149,41 @@ const Hero = () => {
           Ready to build the future of energy? The IETE Students' Forum at Rajalakshmi Institute of Technology invites you to a high-stakes, on-spot hackathon where code meets carbon neutrality.
         </p>
 
-        {/* Info pills */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-          {[
-            { icon: '📍', text: 'Green Building, 4th Floor, RIT' },
-            { icon: '👥', text: '2–4 Members' },
-            { icon: '💰', text: '₹200 per team' },
-          ].map((pill, i) => (
-            <div key={i} className="hero-pill px-3 md:px-4 py-1.5 md:py-2 bg-carbon border border-white/10 rounded-full text-xs md:text-sm text-zinc-300 flex items-center gap-2 backdrop-blur-sm">
-              <span>{pill.icon}</span> {pill.text}
+        {/* Two-Line Minimalist Data Layout */}
+        <div className="flex flex-col items-center justify-center gap-3 mb-10 w-full px-2">
+          
+          {/* Row 1: Venue */}
+          <div className="hero-stat inline-flex items-center justify-center px-6 md:px-8 py-2.5 md:py-3 w-fit bg-[#0a1510]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl hover:border-white/20 transition-colors duration-300">
+            <div className="flex items-center gap-2 md:gap-3 group">
+              <MapPin size={16} className="text-primary group-hover:scale-110 transition-transform" />
+              <span className="text-xs md:text-sm text-zinc-300 font-medium whitespace-nowrap">
+                <span className="text-white font-bold">Venue:</span> Green Building, 4th Floor, RIT
+              </span>
             </div>
-          ))}
+          </div>
+
+          {/* Row 2: Team & Price */}
+          <div className="hero-stat inline-flex justify-center items-center gap-3 md:gap-6 px-6 md:px-8 py-2.5 md:py-3 w-fit max-w-full overflow-x-auto bg-[#0a1510]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl hover:border-white/20 transition-colors duration-300 no-scrollbar">
+            
+            {/* Team Size */}
+            <div className="flex items-center gap-2 md:gap-3 group shrink-0">
+              <Users size={16} className="text-accent group-hover:scale-110 transition-transform" />
+              <span className="text-xs md:text-sm text-zinc-300 font-medium whitespace-nowrap">
+                <span className="text-white font-bold">Team:</span> 2–4 Members
+              </span>
+            </div>
+
+            <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-white/20"></div>
+
+            {/* Entry Fee */}
+            <div className="flex items-center gap-2 md:gap-3 group shrink-0">
+              <Ticket size={16} className="text-purple-400 group-hover:scale-110 transition-transform" />
+              <span className="text-xs md:text-sm text-zinc-300 font-medium whitespace-nowrap">
+                <span className="text-white font-bold">Fee:</span> ₹200 / Squad
+              </span>
+            </div>
+
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
