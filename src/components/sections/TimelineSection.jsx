@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Countdown from '../ui/Countdown';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,7 +84,11 @@ const TimelineSection = () => {
             THE <span className="text-primary">SCHEDULE</span>
           </h2>
         </div>
-        <p className="text-zinc-400 mb-10 md:mb-16 max-w-xl mx-auto text-center schedule-desc">A power-packed 6 hours of innovation.</p>
+        <p className="text-zinc-400 mb-8 max-w-xl mx-auto text-center schedule-desc">A power-packed 6 hours of innovation.</p>
+        
+        <div className="flex justify-center w-full mb-16 schedule-desc">
+          <Countdown />
+        </div>
 
         <div className="relative max-w-3xl mx-auto pl-8 md:pl-0">
           <div className="absolute top-0 bottom-0 left-8 md:left-1/2 md:-translate-x-1/2 w-0.5 bg-white/10"></div>

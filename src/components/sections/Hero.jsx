@@ -149,6 +149,8 @@ const Hero = () => {
           Ready to build the future of energy? The IETE Students' Forum at Rajalakshmi Institute of Technology invites you to a high-stakes, on-spot hackathon where code meets carbon neutrality.
         </p>
 
+        {/* Removed Countdown Timer */}
+
         {/* Two-Line Minimalist Data Layout */}
         <div className="flex flex-col items-center justify-center gap-3 mb-10 w-full px-2">
           
