@@ -76,15 +76,15 @@ const Mission = () => {
               Whether you're a software wizard or a hardware geek, it's time to innovate the grid! ENERGIZE 2026 challenges you to build the future of sustainable energy technology.
             </p>
             <p className="text-zinc-400 text-lg leading-relaxed mission-desc">
-              Organized by the <span className="text-accent font-semibold">IETE Students' Forum</span> at <span className="text-white font-semibold">Rajalakshmi Institute of Technology</span>, this high-stakes on-spot hackathon is where code meets carbon neutrality.
+              Organized by the <span className="text-accent font-semibold">IETE Students' Forum</span> at <span className="text-white font-semibold">Rajalakshmi Institute of Technology</span>, this high-stakes on-spot hackathon is where code meets carbon neutrality — in association with <span className="text-primary font-semibold">Insha Consulting Experts Private Limited</span>.
             </p>
           </div>
-          
+
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   ref={el => statsRef.current[i] = el}
                   className="bg-carbon border border-white/5 p-5 md:p-8 rounded-lg text-center hover:border-primary/50 transition-colors group cursor-default"
                   style={{ transformStyle: 'preserve-3d' }}
