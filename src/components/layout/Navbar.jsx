@@ -127,7 +127,7 @@ const Navbar = () => {
 
         {/* Right Actions */}
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4 relative z-50">
-          <img src={ieteLogo} alt="IETE Logo" className="h-10 sm:h-12 md:h-15 w-auto object-contain brightness-0 invert hidden min-[400px]:block" />
+          <img src={ieteLogo} alt="IETE Logo" className="h-7 min-[400px]:h-10 sm:h-12 md:h-15 w-auto object-contain brightness-0 invert" />
           <div className="h-6 w-px bg-white/10 hidden md:block"></div>
 
           <button
@@ -193,10 +193,7 @@ const Navbar = () => {
               transition={{ duration: 0.3, delay: 0.4 }}
               className="mt-8 pb-8"
             >
-              {/* IETE Logo for very small screens where it was hidden in the header */}
-              <div className="flex justify-center mb-8 min-[400px]:hidden">
-                <img src={ieteLogo} alt="IETE Logo" className="h-10 w-auto object-contain brightness-0 invert opacity-50" />
-              </div>
+
 
               <div className="flex justify-between items-center mb-6">
                 <span className="text-xs text-zinc-500 font-bold tracking-widest uppercase">Quick Action</span>
