@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,7 @@ const Domains = () => {
   const sectionRef = useRef(null);
   const headlineRef = useRef(null);
   const cardsRef = useRef([]);
+  const isDesktop = useIsDesktop();
 
   const tracks = [
     { 
@@ -94,43 +96,37 @@ const Domains = () => {
   }, []);
 
   const handleMove = useCallback((e, i) => {
+    if (!isDesktop) return;          // skip 3-D tilt on mobile
     const card = cardsRef.current[i];
     if (!card) return;
-    
     const isTouch = e.type.indexOf('touch') !== -1;
     const clientX = isTouch ? e.touches[0].clientX : e.clientX;
     const clientY = isTouch ? e.touches[0].clientY : e.clientY;
-
     const rect = card.getBoundingClientRect();
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-
     const xRatio = Math.max(-1, Math.min(1, (x - centerX) / centerX));
     const yRatio = Math.max(-1, Math.min(1, (y - centerY) / centerY));
-
     gsap.to(card, {
-      rotateX: yRatio * -6,
-      rotateY: xRatio * 6,
-      x: xRatio * 4,
-      y: yRatio * 4,
+      rotateX: yRatio * -6, rotateY: xRatio * 6, x: xRatio * 4, y: yRatio * 4,
       duration: 0.4, ease: 'power2.out', transformPerspective: 800,
     });
-
     const spotlight = card.querySelector('.card-spotlight');
     if (spotlight) {
       spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0,230,118,0.1) 0%, transparent 60%)`;
     }
-  }, []);
+  }, [isDesktop]);
 
   const handleLeave = useCallback((i) => {
+    if (!isDesktop) return;
     const card = cardsRef.current[i];
     if (!card) return;
     gsap.to(card, { rotateX: 0, rotateY: 0, x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
     const spotlight = card.querySelector('.card-spotlight');
     if (spotlight) spotlight.style.background = 'none';
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section id="tracks" ref={sectionRef} className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-carbon/50 overflow-hidden">

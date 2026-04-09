@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,6 +10,7 @@ const Mission = () => {
   const textRef = useRef(null);
   const statsRef = useRef([]);
   const lineRef = useRef(null);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,24 +37,22 @@ const Mission = () => {
   }, []);
 
   const handleMove = (e, el) => {
+    if (!isDesktop) return;          // skip 3-D tilt on mobile
     const isTouch = e.type.startsWith('touch');
     const clientX = isTouch ? e.touches[0].clientX : e.clientX;
     const clientY = isTouch ? e.touches[0].clientY : e.clientY;
-
     const rect = el.getBoundingClientRect();
     const x = (clientX - rect.left) / rect.width - 0.5;
     const y = (clientY - rect.top) / rect.height - 0.5;
-
-    // Clamp values to prevent extreme rotation on touch if dragged outside
     const clampedX = Math.max(-0.5, Math.min(0.5, x));
     const clampedY = Math.max(-0.5, Math.min(0.5, y));
-
     gsap.to(el, {
       rotationY: clampedX * 15, rotationX: -clampedY * 15,
       duration: 0.3, ease: 'power2.out', transformPerspective: 800,
     });
   };
   const handleLeave = (el) => {
+    if (!isDesktop) return;
     gsap.to(el, { rotationY: 0, rotationX: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
   };
 

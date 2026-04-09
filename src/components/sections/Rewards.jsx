@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,7 +59,7 @@ const THEMES = {
 };
 
 /* ─── RewardCard ────────────────────────────────────────────── */
-const RewardCard = ({ title, amount, subtitle, icon, badgeText, description, colorScheme = 'primary', index = 0 }) => {
+const RewardCard = ({ title, amount, subtitle, icon, badgeText, description, colorScheme = 'primary', index = 0, isDesktop = true }) => {
   const t = THEMES[colorScheme] || THEMES.primary;
 
   return (
@@ -76,16 +77,18 @@ const RewardCard = ({ title, amount, subtitle, icon, badgeText, description, col
       }}
       style={{ boxShadow: `0 0 30px rgba(${t.rgb},0.04)` }}
     >
-      {/* Shimmer sweep */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          background: `linear-gradient(110deg, transparent 35%, rgba(${t.rgb},0.07) 50%, transparent 65%)`,
-          backgroundSize: '200% 100%',
-        }}
-        animate={{ backgroundPosition: ['-100% 0', '200% 0'] }}
-        transition={{ duration: 3, repeat: Infinity, repeatDelay: 3 + index * 0.7, ease: 'easeInOut' }}
-      />
+      {/* Shimmer sweep — desktop only */}
+      {isDesktop && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background: `linear-gradient(110deg, transparent 35%, rgba(${t.rgb},0.07) 50%, transparent 65%)`,
+            backgroundSize: '200% 100%',
+          }}
+          animate={{ backgroundPosition: ['-100% 0', '200% 0'] }}
+          transition={{ duration: 3, repeat: Infinity, repeatDelay: 3 + index * 0.7, ease: 'easeInOut' }}
+        />
+      )}
 
       {/* Top glow line */}
       <div
@@ -93,8 +96,8 @@ const RewardCard = ({ title, amount, subtitle, icon, badgeText, description, col
         style={{ background: `linear-gradient(90deg, transparent, ${t.accent}90, transparent)` }}
       />
 
-      {/* Floating particles */}
-      {[0, 1, 2].map((i) => (
+      {/* Floating particles — desktop only */}
+      {isDesktop && [0, 1, 2].map((i) => (
         <motion.div
           key={i}
           className={`absolute w-1 h-1 rounded-full ${t.particle} opacity-20 pointer-events-none`}
@@ -204,6 +207,7 @@ const CertIcon = (
 /* ─── Section ───────────────────────────────────────────────── */
 const Rewards = () => {
   const sectionRef = useRef(null);
+  const isDesktop = useIsDesktop();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -264,7 +268,7 @@ const Rewards = () => {
         {/* Card grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" style={{ gridAutoRows: '1fr' }}>
           {cards.map((card, i) => (
-            <RewardCard key={card.badgeText} {...card} index={i} />
+            <RewardCard key={card.badgeText} {...card} index={i} isDesktop={isDesktop} />
           ))}
         </div>
       </div>

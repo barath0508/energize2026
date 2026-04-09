@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,16 +67,13 @@ const FadeUp = ({ children, delay = 0, className = '' }) => {
   );
 };
 
-/* ── Animated bus track ── */
+/* ── Animated bus track (desktop only) ── */
 const BusTrack = () => (
   <div className="relative w-full h-10 my-8 overflow-hidden">
-    {/* road */}
     <div className="absolute inset-y-0 left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-white/8" />
-    {/* dashed centre line */}
     <div className="absolute inset-y-0 left-0 right-0 top-1/2 -translate-y-1/2 h-px"
       style={{ background: 'repeating-linear-gradient(90deg,rgba(0,230,118,0.35) 0,rgba(0,230,118,0.35) 20px,transparent 20px,transparent 40px)' }}
     />
-    {/* moving bus */}
     <motion.div
       className="absolute top-1/2 -translate-y-1/2 text-primary"
       initial={{ x: '-10%' }}
@@ -84,7 +82,6 @@ const BusTrack = () => (
     >
       <BusIcon size={22} />
     </motion.div>
-    {/* glow trail */}
     <motion.div
       className="absolute top-1/2 -translate-y-1/2 w-16 h-3 rounded-full blur-md bg-primary/20"
       initial={{ x: '-15%' }}
@@ -95,7 +92,7 @@ const BusTrack = () => (
 );
 
 /* ── Incharge Card ── */
-const InchargeCard = ({ person, delay }) => {
+const InchargeCard = ({ person, delay, isDesktop }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   return (
@@ -108,15 +105,19 @@ const InchargeCard = ({ person, delay }) => {
                  hover:border-primary/50 hover:shadow-[0_0_40px_rgba(0,230,118,0.12)] hover:scale-[1.02]
                  transition-all duration-500 p-6 flex flex-col gap-5 cursor-default"
     >
-      {/* shimmer sweep on hover */}
-      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-        style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(0,230,118,0.06) 50%,transparent 70%)' }}
-      />
+      {/* shimmer sweep — desktop only */}
+      {isDesktop && (
+        <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+          style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(0,230,118,0.06) 50%,transparent 70%)' }}
+        />
+      )}
 
-      {/* corner accent */}
-      <div className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: 'radial-gradient(circle at top right,rgba(0,230,118,0.18),transparent 70%)' }}
-      />
+      {/* corner accent — desktop only */}
+      {isDesktop && (
+        <div className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{ background: 'radial-gradient(circle at top right,rgba(0,230,118,0.18),transparent 70%)' }}
+        />
+      )}
 
       <div className="flex items-center gap-4">
         {/* avatar ring */}
@@ -126,12 +127,14 @@ const InchargeCard = ({ person, delay }) => {
                           shadow-[0_0_20px_rgba(0,230,118,0.12)]">
             <span className="text-primary"><UserIcon size={22} /></span>
           </div>
-          {/* pulsing halo */}
-          <motion.div
-            className="absolute inset-0 rounded-full border border-primary/20"
-            animate={{ scale: [1, 1.45], opacity: [0.5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-          />
+          {/* pulsing halo — desktop only */}
+          {isDesktop && (
+            <motion.div
+              className="absolute inset-0 rounded-full border border-primary/20"
+              animate={{ scale: [1, 1.45], opacity: [0.5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+            />
+          )}
         </div>
 
         <div>
@@ -147,10 +150,7 @@ const InchargeCard = ({ person, delay }) => {
 
       <div className="border-t border-white/5 pt-4">
         <p className="text-primary/60 text-[10px] font-black tracking-[0.18em] mb-2 uppercase">Contact</p>
-        <a
-          href={person.tel}
-          className="group/ph flex items-center gap-2.5 w-fit"
-        >
+        <a href={person.tel} className="group/ph flex items-center gap-2.5 w-fit">
           <span className="w-7 h-7 rounded-full border border-primary/25 bg-primary/8 flex items-center justify-center
                            text-primary/60 group-hover/ph:text-primary group-hover/ph:border-primary/60
                            group-hover/ph:bg-primary/15 transition-all duration-300 shrink-0">
@@ -173,6 +173,7 @@ const InchargeCard = ({ person, delay }) => {
 /* ── Main Section ── */
 const TransportSection = () => {
   const sectionRef = useRef(null);
+  const isDesktop = useIsDesktop();
 
   return (
     <section
@@ -180,11 +181,15 @@ const TransportSection = () => {
       ref={sectionRef}
       className="py-16 md:py-32 relative z-10 border-t border-white/5 bg-[#030a07] overflow-hidden"
     >
-      {/* ambient blobs */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full
-                      bg-primary/[0.03] blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full
-                      bg-primary/[0.04] blur-[100px]" />
+      {/* ambient blobs — desktop only */}
+      {isDesktop && (
+        <>
+          <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full
+                          bg-primary/[0.03] blur-[120px]" />
+          <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full
+                          bg-primary/[0.04] blur-[100px]" />
+        </>
+      )}
 
       <div className="container mx-auto px-6 md:px-12 max-w-6xl relative">
 
@@ -193,7 +198,7 @@ const TransportSection = () => {
           <motion.div
             className="p-3 border border-primary/20 rounded-sm bg-black/60 mb-5 text-primary
                        shadow-[0_0_20px_rgba(0,230,118,0.12)]"
-            animate={{ boxShadow: ['0 0 20px rgba(0,230,118,0.10)', '0 0 36px rgba(0,230,118,0.22)', '0 0 20px rgba(0,230,118,0.10)'] }}
+            animate={isDesktop ? { boxShadow: ['0 0 20px rgba(0,230,118,0.10)', '0 0 36px rgba(0,230,118,0.22)', '0 0 20px rgba(0,230,118,0.10)'] } : {}}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
           >
             <BusIcon size={30} />
@@ -209,8 +214,8 @@ const TransportSection = () => {
           </p>
         </FadeUp>
 
-        {/* ── Animated Bus Track ── */}
-        <BusTrack />
+        {/* ── Animated Bus Track — desktop only ── */}
+        {isDesktop && <BusTrack />}
 
         {/* ── Info Banner ── */}
         <FadeUp delay={0.1} className="mb-12">
@@ -218,17 +223,20 @@ const TransportSection = () => {
             {/* left glow bar */}
             <motion.div
               className="absolute top-0 left-0 w-1 h-full bg-primary rounded-l-xl"
-              animate={{ boxShadow: ['0 0 8px rgba(0,230,118,0.4)', '0 0 22px rgba(0,230,118,0.8)', '0 0 8px rgba(0,230,118,0.4)'] }}
+              animate={isDesktop ? { boxShadow: ['0 0 8px rgba(0,230,118,0.4)', '0 0 22px rgba(0,230,118,0.8)', '0 0 8px rgba(0,230,118,0.4)'] } : {}}
               transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
             />
             <div className="pl-6 pr-5 py-5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-10">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <motion.div
-                    className="w-2 h-2 rounded-full bg-primary"
-                    animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
+                  {isDesktop && (
+                    <motion.div
+                      className="w-2 h-2 rounded-full bg-primary"
+                      animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  )}
+                  {!isDesktop && <div className="w-2 h-2 rounded-full bg-primary" />}
                   <p className="text-primary text-[10px] font-black tracking-[0.2em] uppercase">Live · How to Board</p>
                 </div>
                 <p className="text-zinc-300 text-sm leading-relaxed">
@@ -279,11 +287,13 @@ const TransportSection = () => {
                 {/* pulsing dot */}
                 <div className="relative mb-3">
                   <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(0,230,118,0.8)]" />
-                  <motion.div
-                    className="absolute inset-0 rounded-full border border-primary/50"
-                    animate={{ scale: [1, 1.9], opacity: [0.6, 0] }}
-                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut', delay: i * 0.25 }}
-                  />
+                  {isDesktop && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full border border-primary/50"
+                      animate={{ scale: [1, 1.9], opacity: [0.6, 0] }}
+                      transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut', delay: i * 0.25 }}
+                    />
+                  )}
                 </div>
                 <p className="text-zinc-100 text-[13px] font-bold tracking-wide leading-tight relative z-10">
                   {route.area}
@@ -314,7 +324,7 @@ const TransportSection = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
             {incharges.map((person, i) => (
-              <InchargeCard key={i} person={person} delay={i * 0.12} />
+              <InchargeCard key={i} person={person} delay={i * 0.12} isDesktop={isDesktop} />
             ))}
           </div>
         </FadeUp>
