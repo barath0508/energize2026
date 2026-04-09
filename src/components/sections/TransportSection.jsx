@@ -45,8 +45,8 @@ const routes = [
 ];
 
 const incharges = [
-  { name: 'A. KALESHA',  badge: 'TRANSPORT HELPLINE', phone: '+91 63807 51700', tel: 'tel:+916380751700' },
-  { name: 'N. SUDHAKAR', badge: 'TRANSPORT HELPLINE', phone: '+91 75488 62447', tel: 'tel:+917548862447' },
+  { name: 'MR. VENKATESAN M',  badge: 'TRANSPORT HELPLINE', phone: '+91 63807 51700', tel: 'tel:+916380751700' },
+  { name: 'MR. SUDHAKAR N', badge: 'TRANSPORT HELPLINE', phone: '+91 75488 62447', tel: 'tel:+917548862447' },
 ];
 
 /* ── Reusable fade-up wrapper ── */
