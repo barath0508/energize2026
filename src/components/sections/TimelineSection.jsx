@@ -20,7 +20,7 @@ const TimelineSection = () => {
   const schedule = [
     { tag: '08:00 AM', title: 'Registration & Check-in', desc: 'Arrive, register your team, and get settled.', right: false },
     { tag: '08:15 AM', title: 'Opening Ceremony', desc: 'Welcome address, rules briefing, and track reveals.', right: true },
-    { tag: '08:30 AM', title: 'Hacking Begins ⚡', desc: 'Start ideating and building your energy solutions.', right: false },
+    { tag: '08:30 AM', title: 'Hacking Begins', titleIcon: true, desc: 'Start ideating and building your energy solutions.', right: false },
     { tag: '12:00 PM', title: 'Midway Check & Mentoring', desc: 'Progress reviews and mentor guidance.', right: true },
     { tag: '02:30 PM', title: 'Final Submissions & Judging', desc: 'Submit your projects and present to judges.', right: false },
     { tag: '03:00 PM', title: 'Awards & Closing', desc: 'Prize distribution and certificates for all!', right: true },
@@ -110,7 +110,14 @@ const TimelineSection = () => {
               
               <div className="timeline-card bg-carbon border border-white/5 p-4 md:p-6 rounded-lg hover:border-primary/30 transition-all duration-500 group">
                 <span className="text-primary text-xs font-bold tracking-widest font-mono">{item.tag}</span>
-                <h4 className="text-xl font-display font-bold text-white mt-1 mb-2 group-hover:text-primary transition-colors duration-300">{item.title}</h4>
+                <h4 className="text-xl font-display font-bold text-white mt-1 mb-2 group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                  {item.title}
+                  {item.titleIcon && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary shrink-0">
+                      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                  )}
+                </h4>
                 <div className="text-zinc-500 text-sm">{item.desc}</div>
               </div>
             </div>

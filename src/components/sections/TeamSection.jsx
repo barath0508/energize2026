@@ -27,7 +27,7 @@ const TeamSection = () => {
   const headerRef = useRef(null);
 
   const organizers = [
-    { badge: 'FACULTY ADVISOR', name: 'DR. G NIRMALAPRIYA', role: 'HOD - ECE Department', contact: '+91 9025469644', link: 'https://www.linkedin.com/in/nirmala-priya-790932156/' },
+    
     { badge: 'FACULTY COORDINATOR', name: 'MS. KALAIVANI S', role: 'IETE Faculty Coordinator', contact: '+91 9486966148', link: '#' },
     { badge: 'FACULTY COORDINATOR', name: 'MR. A. BALAJI', role: 'IETE Faculty Coordinator', contact: '+91 8072818831', link: '#' },
     { badge: 'CHAIRMAN', name: 'HARINI S', role: '3rd year ECE A', contact: '+91 6383078169', link: 'https://www.linkedin.com/in/harini-shanmuganathan-13jan2006' },

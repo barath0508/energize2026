@@ -34,24 +34,61 @@ const Mission = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleMouseMove = (e, el) => {
+  const handleMove = (e, el) => {
+    const isTouch = e.type.startsWith('touch');
+    const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
     const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const x = (clientX - rect.left) / rect.width - 0.5;
+    const y = (clientY - rect.top) / rect.height - 0.5;
+
+    // Clamp values to prevent extreme rotation on touch if dragged outside
+    const clampedX = Math.max(-0.5, Math.min(0.5, x));
+    const clampedY = Math.max(-0.5, Math.min(0.5, y));
+
     gsap.to(el, {
-      rotationY: x * 15, rotationX: -y * 15,
+      rotationY: clampedX * 15, rotationX: -clampedY * 15,
       duration: 0.3, ease: 'power2.out', transformPerspective: 800,
     });
   };
-  const handleMouseLeave = (el) => {
+  const handleLeave = (el) => {
     gsap.to(el, { rotationY: 0, rotationX: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
   };
 
   const stats = [
-    { icon: '📅', value: 'APR 21', label: 'Date', suffix: '' },
-    { icon: '⏰', value: '6 HRS', label: 'Duration', suffix: '' },
-    { icon: '👥', value: '2–4', label: 'Team Size', suffix: '' },
-    { icon: '💰', value: '₹200', label: 'Per Team', suffix: '' },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-primary mx-auto">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>
+        </svg>
+      ),
+      value: 'APR 21', label: 'Date', suffix: ''
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-primary mx-auto">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      ),
+      value: '6 HRS', label: 'Duration', suffix: ''
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-primary mx-auto">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      ),
+      value: '2–4', label: 'Team Size', suffix: ''
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-primary mx-auto">
+          <line x1="12" x2="12" y1="1" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      ),
+      value: '₹200', label: 'Per Team', suffix: ''
+    },
   ];
 
   return (
@@ -88,10 +125,13 @@ const Mission = () => {
                   ref={el => statsRef.current[i] = el}
                   className="bg-carbon border border-white/5 p-5 md:p-8 rounded-lg text-center hover:border-primary/50 transition-colors group cursor-default"
                   style={{ transformStyle: 'preserve-3d' }}
-                  onMouseMove={(e) => handleMouseMove(e, statsRef.current[i])}
-                  onMouseLeave={() => handleMouseLeave(statsRef.current[i])}
+                  onMouseMove={(e) => handleMove(e, statsRef.current[i])}
+                  onMouseLeave={() => handleLeave(statsRef.current[i])}
+                  onTouchMove={(e) => handleMove(e, statsRef.current[i])}
+                  onTouchStart={(e) => handleMove(e, statsRef.current[i])}
+                  onTouchEnd={() => handleLeave(statsRef.current[i])}
                 >
-                  <div className="text-2xl mb-3">{stat.icon}</div>
+                  <div className="mb-3">{stat.icon}</div>
                   <div className="text-3xl md:text-4xl font-display font-black text-white group-hover:text-primary transition-colors mb-2">
                     {stat.value}
                   </div>

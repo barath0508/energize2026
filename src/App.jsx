@@ -17,6 +17,7 @@ const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection
 const GallerySection = lazy(() => import('./components/sections/GallerySection'));
 const TeamSection = lazy(() => import('./components/sections/TeamSection'));
 const FAQSection = lazy(() => import('./components/sections/FAQSection'));
+const TransportSection = lazy(() => import('./components/sections/TransportSection'));
 const Footer = lazy(() => import('./components/layout/Footer'));
 const FloatingMap = lazy(() => import('./components/layout/FloatingCalendar'));
 
@@ -71,6 +72,7 @@ function App() {
           <SponsorsSection />
           <GallerySection />
           <FAQSection />
+          <TransportSection />
           <TeamSection />
         </Suspense>
       </main>

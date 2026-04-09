@@ -22,7 +22,13 @@ const Domains = () => {
       title: 'The Algorithmic Grid', 
       type: 'Software Track',
       desc: 'Predictive AI & carbon trackers. Build intelligent software solutions for a sustainable future.',
-      icon: '💻',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+          <rect width="20" height="14" x="2" y="3" rx="2"/>
+          <path d="m8 21 4-4 4 4"/><path d="M8 21h8"/>
+          <path d="m10 9 2 2 4-4"/>
+        </svg>
+      ),
       features: ['Predictive AI Models', 'Carbon Footprint Trackers', 'Gamified Energy Apps', 'Smart Grid Analytics'],
       coordinators: [
         { name: 'PREETHI B', phone: '+91 8838320465' },
@@ -35,7 +41,11 @@ const Domains = () => {
       title: 'The Kinetic Circuit', 
       type: 'Hardware Track',
       desc: 'Energy harvesting, smart meters, & automated load balancing. Engineer circuits that power tomorrow.',
-      icon: '⚡',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+          <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      ),
       features: ['Energy Harvesting', 'Smart Meters', 'Automated Load Balancing', 'IoT Sensors'],
       coordinators: [
         { name: 'SUJI V', phone: '+91 7200831242' },
@@ -83,20 +93,28 @@ const Domains = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleMouseMove = useCallback((e, i) => {
+  const handleMove = useCallback((e, i) => {
     const card = cardsRef.current[i];
     if (!card) return;
+    
+    const isTouch = e.type.indexOf('touch') !== -1;
+    const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
+    const xRatio = Math.max(-1, Math.min(1, (x - centerX) / centerX));
+    const yRatio = Math.max(-1, Math.min(1, (y - centerY) / centerY));
+
     gsap.to(card, {
-      rotateX: ((y - centerY) / centerY) * -6,
-      rotateY: ((x - centerX) / centerX) * 6,
-      x: ((x - centerX) / centerX) * 4,
-      y: ((y - centerY) / centerY) * 4,
+      rotateX: yRatio * -6,
+      rotateY: xRatio * 6,
+      x: xRatio * 4,
+      y: yRatio * 4,
       duration: 0.4, ease: 'power2.out', transformPerspective: 800,
     });
 
@@ -106,7 +124,7 @@ const Domains = () => {
     }
   }, []);
 
-  const handleMouseLeave = useCallback((i) => {
+  const handleLeave = useCallback((i) => {
     const card = cardsRef.current[i];
     if (!card) return;
     gsap.to(card, { rotateX: 0, rotateY: 0, x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
@@ -135,14 +153,17 @@ const Domains = () => {
               ref={el => cardsRef.current[i] = el}
               className="group relative bg-[#0a1510] border border-white/10 p-6 md:p-10 rounded-lg overflow-hidden hover:border-primary transition-colors duration-300 transform-gpu cursor-default"
               style={{ transformStyle: 'preserve-3d' }}
-              onMouseMove={(e) => handleMouseMove(e, i)}
-              onMouseLeave={() => handleMouseLeave(i)}
+              onMouseMove={(e) => handleMove(e, i)}
+              onMouseLeave={() => handleLeave(i)}
+              onTouchMove={(e) => handleMove(e, i)}
+              onTouchStart={(e) => handleMove(e, i)}
+              onTouchEnd={() => handleLeave(i)}
             >
               <div className="card-spotlight absolute inset-0 z-0 pointer-events-none rounded-lg"></div>
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6">
-                  <span className="text-6xl">{track.icon}</span>
+                  <div className="mb-6">{track.icon}</div>
                   <span className="font-mono text-xs text-zinc-600 group-hover:text-primary/50 transition-colors">[TRACK_{track.id}]</span>
                 </div>
                 

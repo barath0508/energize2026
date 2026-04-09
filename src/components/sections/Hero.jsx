@@ -153,7 +153,7 @@ const Hero = () => {
 
         {/* Two-Line Minimalist Data Layout */}
         <div className="flex flex-col items-center justify-center gap-3 mb-10 w-full px-2">
-          
+
           {/* Row 1: Venue */}
           <div className="hero-stat inline-flex items-center justify-center px-6 md:px-8 py-2.5 md:py-3 w-fit bg-[#0a1510]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl hover:border-white/20 transition-colors duration-300">
             <div className="flex items-center gap-2 md:gap-3 group">
@@ -166,7 +166,7 @@ const Hero = () => {
 
           {/* Row 2: Team & Price */}
           <div className="hero-stat inline-flex justify-center items-center gap-3 md:gap-6 px-6 md:px-8 py-2.5 md:py-3 w-fit max-w-full overflow-x-auto bg-[#0a1510]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl hover:border-white/20 transition-colors duration-300 no-scrollbar">
-            
+
             {/* Team Size */}
             <div className="flex items-center gap-2 md:gap-3 group shrink-0">
               <Users size={16} className="text-accent group-hover:scale-110 transition-transform" />
