@@ -113,7 +113,7 @@ const Mission = () => {
               Whether you're a software wizard or a hardware geek, it's time to innovate the grid! ENERGIZE 2026 challenges you to build the future of sustainable energy technology.
             </p>
             <p className="text-zinc-400 text-lg leading-relaxed mission-desc">
-              Organized by the <span className="text-accent font-semibold">IETE Students' Forum</span> at <span className="text-white font-semibold">Rajalakshmi Institute of Technology</span>, this high-stakes on-spot hackathon is where code meets carbon neutrality — in association with <span className="text-primary font-semibold">Insha Consulting Experts Private Limited and Wyntrix</span>.
+              Organized by the <span className="text-accent font-semibold">IETE Students' Forum</span> at <span className="text-white font-semibold">Rajalakshmi Institute of Technology</span>, this high-stakes on-spot hackathon is where code meets carbon neutrality — in association with <span className="text-primary font-semibold">Insha Consulting Experts Private Limited</span> and <span className="text-[#c084fc] font-semibold">Wyntrix</span>.
             </p>
           </div>
 
