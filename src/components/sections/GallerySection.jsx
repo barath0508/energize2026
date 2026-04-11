@@ -79,19 +79,19 @@ const GallerySection = () => {
         <p ref={descRef} className="text-zinc-400 text-lg leading-relaxed max-w-xl mx-auto text-center mb-16">
           We envision a future powered by clean, intelligent energy systems. ENERGIZE 2026 brings together the brightest minds to prototype sustainable solutions — from solar-powered grids to AI-driven energy optimization. Here's a glimpse of the world we're building toward.
         </p>
-        
+
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {images.map((img, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               ref={el => imagesRef.current[i] = el}
               className="relative overflow-hidden group aspect-video rounded-sm border border-white/10 hover:border-primary/80 transition-colors duration-500"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none duration-700"></div>
               <div className="absolute inset-0 bg-primary mix-blend-color opacity-0 group-hover:opacity-20 transition-opacity z-10 pointer-events-none duration-500"></div>
-              <img 
-                src={img.src} alt={img.alt} 
+              <img
+                src={img.src} alt={img.alt}
                 className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700 ease-out"
                 loading="lazy"
               />
