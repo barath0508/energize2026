@@ -140,7 +140,7 @@ const Navbar = () => {
             </button>
 
             <a
-              href="https://forms.gle/EXV3PpsJzkqULSKB6"
+              href="https://forms.gle/w7JbV1KnatzMnVJs7"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden xl:block px-4 py-2 bg-primary text-black font-bold text-xs hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wide text-center whitespace-nowrap"
@@ -204,7 +204,7 @@ const Navbar = () => {
                 </div>
               </div>
               <a
-                href="https://forms.gle/EXV3PpsJzkqULSKB6"
+                href="https://forms.gle/w7JbV1KnatzMnVJs7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center px-8 py-5 bg-primary/10 border border-primary/30 text-primary font-bold text-lg hover:bg-primary hover:text-black transition-all rounded-sm active:scale-[0.98] block uppercase tracking-widest"
