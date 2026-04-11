@@ -11,6 +11,7 @@ import GlobalBackground from './components/effects/GlobalBackground';
 
 // Lazy load below-the-fold components to improve mobile INP and Hydration
 const Domains = lazy(() => import('./components/sections/Domains'));
+const ProblemStatements = lazy(() => import('./components/sections/ProblemStatements'));
 const TimelineSection = lazy(() => import('./components/sections/TimelineSection'));
 const Rewards = lazy(() => import('./components/sections/Rewards'));
 const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection'));
@@ -67,6 +68,7 @@ function App() {
         <Mission />
         <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
           <Domains />
+          <ProblemStatements />
           <TimelineSection />
           <Rewards />
           <SponsorsSection />
