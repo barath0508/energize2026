@@ -1,24 +1,16 @@
 import React, { useEffect, Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import Navbar from './components/layout/Navbar';
-import Hero from './components/sections/Hero';
-import Mission from './components/sections/Mission';
-import GlobalBackground from './components/effects/GlobalBackground';
 
-// Lazy load below-the-fold components to improve mobile INP and Hydration
-const Domains = lazy(() => import('./components/sections/Domains'));
-const ProblemStatements = lazy(() => import('./components/sections/ProblemStatements'));
-const TimelineSection = lazy(() => import('./components/sections/TimelineSection'));
-const Rewards = lazy(() => import('./components/sections/Rewards'));
-const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection'));
-const GallerySection = lazy(() => import('./components/sections/GallerySection'));
-const TeamSection = lazy(() => import('./components/sections/TeamSection'));
-const FAQSection = lazy(() => import('./components/sections/FAQSection'));
-const TransportSection = lazy(() => import('./components/sections/TransportSection'));
+import Navbar from './components/layout/Navbar';
+import GlobalBackground from './components/effects/GlobalBackground';
+import Home from './pages/Home';
+import Blog from './pages/Blog';
+
 const Footer = lazy(() => import('./components/layout/Footer'));
 const FloatingMap = lazy(() => import('./components/layout/FloatingCalendar'));
 
@@ -59,33 +51,24 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-zinc-100 overflow-x-hidden relative">
-      <GlobalBackground />
-      <Navbar />
-      
-      <main className="relative z-10 flex flex-col w-full">
-        <Hero />
-        <Mission />
-        <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
-          <Domains />
-          <ProblemStatements />
-          <TimelineSection />
-          <Rewards />
-          <SponsorsSection />
-          <GallerySection />
-          <FAQSection />
-          <TransportSection />
-          <TeamSection />
-        </Suspense>
-      </main>
+    <BrowserRouter>
+      <div className="min-h-screen bg-background text-zinc-100 overflow-x-hidden relative">
+        <GlobalBackground />
+        <Navbar />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+        </Routes>
 
-      <Suspense fallback={null}>
-        <Footer />
-        <FloatingMap />
-      </Suspense>
-      <Analytics />
-      <SpeedInsights />
-    </div>
+        <Suspense fallback={null}>
+          <Footer />
+          <FloatingMap />
+        </Suspense>
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </BrowserRouter>
   );
 }
 

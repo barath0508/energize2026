@@ -71,9 +71,21 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, targetId) => {
+  const handleNavClick = (e, href) => {
     e.preventDefault();
-    const target = document.querySelector(targetId);
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      setMobileMenuOpen(false);
+      return;
+    }
+    
+    if (window.location.pathname !== '/') {
+      window.location.href = `/${href}`;
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    const target = document.querySelector(href);
     if (target && window.lenis) {
       window.lenis.scrollTo(target);
     } else if (target) {
@@ -88,7 +100,7 @@ const Navbar = () => {
     { name: 'SCHEDULE', href: '#schedule' },
     { name: 'PRIZES', href: '#prizes' },
     { name: 'FAQS', href: '#faqs' },
-    { name: 'TRANSPORT', href: '#transport' },
+    { name: 'BLOG', href: '/blog' },
   ];
 
   return (
