@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Hero from '../components/sections/Hero';
 import Mission from '../components/sections/Mission';
 
@@ -14,21 +15,28 @@ const TransportSection = lazy(() => import('../components/sections/TransportSect
 
 const Home = () => {
   return (
-    <main className="relative z-10 flex flex-col w-full">
-      <Hero />
-      <Mission />
-      <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
-        <Domains />
-        <ProblemStatements />
-        <TimelineSection />
-        <Rewards />
-        <SponsorsSection />
-        <GallerySection />
-        <FAQSection />
-        <TransportSection />
-        <TeamSection />
-      </Suspense>
-    </main>
+    <>
+      <Helmet>
+        <title>ENERGIZE 2026 — Bridging Bytes & Bricks | IETE ISF, RIT</title>
+        <meta name="description" content="ENERGIZE 2026 is a high-stakes on-spot hackathon by IETE Students' Forum at Rajalakshmi Institute of Technology, Chennai. Code meets carbon neutrality. April 21, 2026. Register now!" />
+        <link rel="canonical" href="https://energize2026.vercel.app/" />
+      </Helmet>
+      <main className="relative z-10 flex flex-col w-full">
+        <Hero />
+        <Mission />
+        <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
+          <Domains />
+          <ProblemStatements />
+          <TimelineSection />
+          <Rewards />
+          <SponsorsSection />
+          <GallerySection />
+          <FAQSection />
+          <TransportSection />
+          <TeamSection />
+        </Suspense>
+      </main>
+    </>
   );
 };
 

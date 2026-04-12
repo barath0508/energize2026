@@ -31,7 +31,7 @@ const MarqueeRow = ({ items, reverse = false, speed = 30 }) => (
           className="h-20 w-48 bg-carbon border border-white/10 rounded-sm flex items-center justify-center shrink-0 hover:border-primary/50 hover:bg-[#0a1510] hover:shadow-[0_0_20px_rgba(0,230,118,0.15)] hover:scale-105 transition-all duration-300 cursor-pointer group/item px-4"
         >
           {item.img ? (
-            <img src={item.img} alt={item.name} className={`${item.imgClass || 'max-h-10'} max-w-full object-contain transition-all duration-300 ${item.filterClass || ''}`} />
+            <img loading="lazy" src={item.img} alt={item.name} className={`${item.imgClass || 'max-h-10'} max-w-full object-contain transition-all duration-300 ${item.filterClass || ''}`} />
           ) : (
             <span className="font-mono text-zinc-500 text-sm font-bold uppercase tracking-widest group-hover/item:text-primary transition-colors duration-300">{item.name}</span>
           )}
@@ -284,7 +284,7 @@ const SponsorsSection = () => {
                   whileHover={{ scale: 1.07, rotate: 1.5 }}
                   transition={{ type: 'spring', stiffness: 280, damping: 16 }}
                 >
-                  <img src={inshaLogo} alt="Insha Consulting Experts" className="max-h-16 w-auto object-contain" />
+                  <img loading="lazy" src={inshaLogo} alt="Insha Consulting Experts" className="max-h-16 w-auto object-contain" />
                 </motion.div>
               </div>
               <motion.span
@@ -446,7 +446,7 @@ const SponsorsSection = () => {
                   whileHover={{ scale: 1.07, rotate: -1.5 }}
                   transition={{ type: 'spring', stiffness: 280, damping: 16 }}
                 >
-                  <img src={wyntrixLogo} alt="Wyntrix" className="max-h-16 w-auto object-contain rounded-lg" />
+                  <img loading="lazy" src={wyntrixLogo} alt="Wyntrix" className="max-h-16 w-auto object-contain rounded-lg" />
                 </motion.div>
               </div>
               <motion.span

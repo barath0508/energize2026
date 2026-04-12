@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 
 const Blog = () => {
@@ -7,14 +8,53 @@ const Blog = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://energize2026.vercel.app/blog"
+    },
+    "headline": "Inside ENERGIZE 2026: Bridging Bytes & Bricks",
+    "description": "A high-stakes 24-hour innovation marathon where the digital meets the physical to forge carbon-neutral solutions for tomorrow.",
+    "image": "https://energize2026.vercel.app/hero.png",  
+    "author": {
+      "@type": "Organization",
+      "name": "IETE Students' Forum, RIT"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "IETE Students' Forum",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://energize2026.vercel.app/hero.png"
+      }
+    },
+    "datePublished": "2026-04-12",
+    "dateModified": "2026-04-12"
+  };
+
   return (
-    <main className="relative z-10 flex flex-col w-full min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <motion.article 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full space-y-12"
-      >
+    <>
+      <Helmet>
+        <title>Inside ENERGIZE 2026: The Ultimate Hackathon Blog</title>
+        <meta name="description" content="Discover everything about ENERGIZE 2026: the hardware & software hackathon focused on carbon neutrality. Event details, tracks, and prizes." />
+        <link rel="canonical" href="https://energize2026.vercel.app/blog" />
+        <meta property="og:title" content="Inside ENERGIZE 2026: The Ultimate Hackathon Blog" />
+        <meta property="og:description" content="Discover everything about ENERGIZE 2026. Hardware, Software, and Prizes." />
+        <meta property="og:url" content="https://energize2026.vercel.app/blog" />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      <main className="relative z-10 flex flex-col w-full min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <motion.article 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full space-y-12"
+        >
         {/* Header Section */}
         <header className="space-y-6 border-b border-primary/20 pb-8">
           <div className="flex items-center gap-3">
@@ -91,6 +131,7 @@ const Blog = () => {
         </div>
       </motion.article>
     </main>
+    </>
   );
 };
 
