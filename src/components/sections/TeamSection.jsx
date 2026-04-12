@@ -32,7 +32,7 @@ const TeamSection = () => {
     { badge: 'FACULTY COORDINATOR', name: 'MR. A. BALAJI', role: 'IETE Faculty Coordinator', contact: '+91 8072818831', link: '#' },
     { badge: 'CHAIRMAN', name: 'HARINI S', role: '3rd year ECE A', contact: '+91 6383078169', link: 'https://www.linkedin.com/in/harini-shanmuganathan-13jan2006' },
     { badge: 'VICE CHAIRMAN', name: 'JEYANANDH V S', role: '3rd year VLSI A', contact: '+91 9043580630', link: 'https://www.linkedin.com/in/jeyanandh-v-s/' },
-    { badge: 'HONORARY SECRETARY', name: 'KARTHIK S', role: '2nd year ECE A', contact: '+91 7200507050', link: 'https://www.linkedin.com/in/karthik2745/' },
+    { badge: 'HONORARY SECRETARY', name: 'KARTHIK S', role: '2nd year ECE A', contact: '+91 8072737648', link: 'https://www.linkedin.com/in/karthik2745/' },
     { badge: 'JOINT SECRETARY', name: 'SASIKUMAR M', role: '2nd year VLSI C', contact: '+91 9361957420', link: '#' },
     { badge: 'TREASURER', name: 'MADESH S', role: '2nd year ECE B', contact: '+91 9445396430', link: 'https://www.linkedin.com/in/s-a-madesh/' },
     { badge: 'TREASURER', name: 'KAVIPRIYA D', role: '2nd year VLSI B', contact: '+91 9003562213', link: '#' },
