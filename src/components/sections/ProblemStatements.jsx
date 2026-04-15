@@ -20,8 +20,8 @@ const ProblemStatements = () => {
       id: 'SOFTWARE',
       title: 'Software Problem Statements',
       type: 'Track 01',
-      desc: 'Get ready to solve real-world problems with code. The official software problem statements will be revealed soon.',
-      status: 'coming_soon',
+      desc: 'Problem statements will be given on-spot for this track. Build intelligent software solutions for a sustainable future.',
+      status: 'none',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
           <rect width="20" height="14" x="2" y="3" rx="2"/>
@@ -34,9 +34,8 @@ const ProblemStatements = () => {
       id: 'HARDWARE',
       title: 'Hardware Problem Statements',
       type: 'Track 02',
-      desc: 'Build the physical solutions of the future. The official hardware problem statements are now available for download.',
-      status: 'available',
-      link: hardwarePdf,
+      desc: 'You can choose any problem statement under the theme of Smart Energy. Build the physical solutions of the future.',
+      status: 'none',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
           <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -111,23 +110,7 @@ const ProblemStatements = () => {
                 <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-4 group-hover:text-primary transition-colors">{stmt.title}</h3>
                 <p className="text-zinc-400 text-sm max-w-sm mb-8">{stmt.desc}</p>
                 
-                <div className="inline-block relative">
-                  <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
-                  {stmt.status === 'available' ? (
-                    <a href={stmt.link} target="_blank" rel="noopener noreferrer" className="relative px-6 py-2 bg-primary/10 border border-primary/50 text-white hover:text-black rounded-full font-mono text-sm tracking-widest font-semibold flex items-center gap-2 hover:bg-primary transition-all duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                      DOWNLOAD PDF
-                    </a>
-                  ) : (
-                    <div className="relative px-6 py-2 bg-black/60 border border-primary/30 rounded-full text-primary font-mono text-sm tracking-widest font-semibold flex items-center gap-2 group-hover:bg-primary/10 transition-colors">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                      </span>
-                      COMING SOON
-                    </div>
-                  )}
-                </div>
+                  {/* Status buttons removed as per Open Innovation instructions */}
               </div>
               
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-700 ease-out"></div>

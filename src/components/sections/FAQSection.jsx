@@ -38,11 +38,11 @@ const FAQSection = () => {
   const rules = [
     "Each team must have 2–4 members only.",
     "Teams must choose one track (Software or Hardware).",
-    "The project must be strictly based on the given problem statement.",
+    "The project must be strictly based on the given problem statement (Software will be given on-spot, Hardware can be chosen under the theme: Smart Energy).",
     "Participants must bring their own required materials (laptop/components).",
     "The hackathon is on-spot and must be completed within the given time.",
-    "Hardware problem statements will be announced earlier before the event.",
-    "The hackathon must be developed based on the theme: Smart Energy.",
+    "Hardware problem statements can be chosen from the theme of Smart Energy prior to the event.",
+    "Snacks and refreshments will be provided for all participants. Lunch will be provided for external participants only.",
     "Evaluation is based on idea, innovation, prototype, and presentation; judges' decision is final."
   ];
 
@@ -53,6 +53,7 @@ const FAQSection = () => {
     { q: "Where and when is the event?", a: "April 21, 2026, from 8:30 AM to 3:00 PM at the Green Building, 4th Floor, Rajalakshmi Institute of Technology." },
     { q: "What can we win?", a: "Cash prizes for Winners and Runners-up! All participants receive certificates to boost their portfolios." },
     { q: "Do we need to bring our own hardware?", a: "For the Hardware track, yes — bring your own components and tools. Basic power supplies and workspace will be provided at the venue." },
+    { q: "Will food or snacks be provided?", a: "Yes, snacks and refreshments will be provided for all participants. However, lunch will be provided for external participants only." },
   ];
 
   useEffect(() => {
