@@ -20,7 +20,7 @@ const ProblemStatements = () => {
       id: 'SOFTWARE',
       title: 'Software Problem Statements',
       type: 'Track 01',
-      desc: 'Problem statements will be given on-spot for this track. Build intelligent software solutions for a sustainable future.',
+      desc: 'Problem statements will be released on Sunday for this track. Build intelligent software solutions for a sustainable future.',
       status: 'none',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">

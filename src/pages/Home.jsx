@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from '../components/sections/Hero';
+import JudgingCriteria from '../components/sections/JudgingCriteria';
 import Mission from '../components/sections/Mission';
 
 const Domains = lazy(() => import('../components/sections/Domains'));
@@ -23,6 +24,7 @@ const Home = () => {
       </Helmet>
       <main className="relative z-10 flex flex-col w-full">
         <Hero />
+        <JudgingCriteria />
         <Mission />
         <Suspense fallback={<div className="h-20 w-full flex items-center justify-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
           <Domains />
