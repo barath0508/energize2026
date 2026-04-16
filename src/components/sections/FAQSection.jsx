@@ -38,7 +38,7 @@ const FAQSection = () => {
   const rules = [
     "Each team must have 2–4 members only.",
     "Teams must choose one track (Software or Hardware).",
-    "The project must be strictly based on the given problem statement (Software will be given on-spot, Hardware can be chosen under the theme: Smart Energy).",
+    "The project must be strictly based on the given problem statement (Software will be released on Sunday, Hardware can be chosen under the theme: Smart Energy).",
     "Participants must bring their own required materials (laptop/components).",
     "It is advised to bring an extension cord for additional connection sockets.",
     "Carry your college ID card.",
