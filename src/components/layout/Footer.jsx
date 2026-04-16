@@ -52,7 +52,7 @@ const Footer = () => {
         </p>
 
         <a
-          href="https://forms.gle/w7JbV1KnatzMnVJs7"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScd9mlrHgtLlPomwl2ZMR5_Z_2dZ_l1Q0fLmCFTUaien1K-lg/viewform?usp=sharing&ouid=100778809720239551618"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-cta-btn px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 hover:shadow-[0_0_40px_rgba(0,230,118,0.4)] hover:-translate-y-1 duration-300 inline-block text-center"
