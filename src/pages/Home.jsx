@@ -13,6 +13,7 @@ const GallerySection = lazy(() => import('../components/sections/GallerySection'
 const TeamSection = lazy(() => import('../components/sections/TeamSection'));
 const FAQSection = lazy(() => import('../components/sections/FAQSection'));
 const TransportSection = lazy(() => import('../components/sections/TransportSection'));
+const FeedbackRating = lazy(() => import('../components/sections/FeedbackRating'));
 
 const Home = () => {
   return (
@@ -36,6 +37,7 @@ const Home = () => {
           <FAQSection />
           <TransportSection />
           <TeamSection />
+          <FeedbackRating />
         </Suspense>
       </main>
     </>
