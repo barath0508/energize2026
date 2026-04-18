@@ -39,7 +39,7 @@ export const useRegistrationStatus = () => {
     isClosed,
     timeLeft: formatTime(timeLeftMs),
     registrationUrl: isClosed ? INSTAGRAM_URL : FORM_URL,
-    statusText: isClosed ? "Stay Tuned" : "Register Now"
+    statusText: isClosed ? "Follow us for more events" : "Register Now"
   };
 };
 

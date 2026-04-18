@@ -190,6 +190,14 @@ const Hero = () => {
           </div>
         </div>
 
+        {isClosed && (
+          <div className="hero-stat mb-8 px-6 py-2 bg-accent/10 border border-accent/20 rounded-full">
+            <p className="text-accent text-xs md:text-sm font-bold tracking-widest uppercase animate-pulse">
+              Registration is now Closed
+            </p>
+          </div>
+        )}
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href={registrationUrl}

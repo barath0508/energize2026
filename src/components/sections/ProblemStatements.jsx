@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import hardwarePdf from '../../assets/Hardware Problem Statements.pdf';
+import softwarePdf from '../../assets/SOFTWARE PROBLEM STATEMENTS .pdf';
+
+const SOFTWARE_RELEASE_TIME = new Date('2026-04-19T10:00:00+05:30').getTime();
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,14 +17,35 @@ const ProblemIcon = () => (
 const ProblemStatements = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
+  const [isSoftwarePublished, setIsSoftwarePublished] = React.useState(Date.now() >= SOFTWARE_RELEASE_TIME);
+
+  useEffect(() => {
+    const checkTime = () => {
+      if (Date.now() >= SOFTWARE_RELEASE_TIME) {
+        setIsSoftwarePublished(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (!checkTime()) {
+      const interval = setInterval(() => {
+        if (checkTime()) clearInterval(interval);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, []);
 
   const statements = [
     {
       id: 'SOFTWARE',
       title: 'Software Problem Statements',
       type: 'Track 01',
-      desc: 'Problem statements will be released on Sunday for this track. Build intelligent software solutions for a sustainable future.',
+      desc: isSoftwarePublished 
+        ? 'Explore the challenges and build intelligent software solutions for a sustainable future.' 
+        : 'Problem statements will be released on Sunday at 10:00 AM IST. Build intelligent software solutions for a sustainable future.',
       status: 'none',
+      href: isSoftwarePublished ? softwarePdf : null,
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
           <rect width="20" height="14" x="2" y="3" rx="2"/>
