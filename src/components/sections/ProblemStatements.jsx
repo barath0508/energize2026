@@ -36,6 +36,7 @@ const ProblemStatements = () => {
       type: 'Track 02',
       desc: 'You can choose any problem statement under the theme of Smart Energy. Build the physical solutions of the future.',
       status: 'none',
+      href: hardwarePdf,
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
           <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -110,7 +111,19 @@ const ProblemStatements = () => {
                 <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-4 group-hover:text-primary transition-colors">{stmt.title}</h3>
                 <p className="text-zinc-400 text-sm max-w-sm mb-8">{stmt.desc}</p>
                 
-                  {/* Status buttons removed as per Open Innovation instructions */}
+                {stmt.href && (
+                  <a 
+                    href={stmt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold text-xs hover:border-primary/50 hover:bg-white/10 transition-all rounded-sm uppercase tracking-widest active:scale-95 group/btn"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary group-hover/btn:scale-110 transition-transform">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+                    </svg>
+                    Reference Statements
+                  </a>
+                )}
               </div>
               
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-700 ease-out"></div>
