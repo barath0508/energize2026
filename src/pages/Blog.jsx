@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import useRegistrationStatus from '../hooks/useRegistrationStatus';
 
 const Blog = () => {
+  const { isClosed, timeLeft, registrationUrl, statusText } = useRegistrationStatus();
   useEffect(() => {
     // Scroll to top on load since we are routing
     window.scrollTo(0, 0);
@@ -117,14 +119,16 @@ const Blog = () => {
             </section>
 
             <section className="pt-8 border-t border-primary/20 text-center">
-              <h3 className="text-xl font-display text-white mb-6">Are you ready to secure the legacy?</h3>
+              <h3 className="text-xl font-display text-white mb-6">
+                {isClosed ? "Stay tuned for future updates!" : "Are you ready to secure the legacy?"}
+              </h3>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScd9mlrHgtLlPomwl2ZMR5_Z_2dZ_l1Q0fLmCFTUaien1K-lg/viewform?usp=sharing&ouid=100778809720239551618"
+                href={registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-primary text-black font-display font-bold tracking-[0.2em] transform hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_hsl(45_100%_50%_/_0.3)] hover:shadow-[0_0_30px_hsl(45_100%_50%_/_0.6)]"
+                className={`inline-block px-8 py-4 ${isClosed ? 'bg-accent/20 text-accent border border-accent/30' : 'bg-primary text-black'} font-display font-bold tracking-[0.2em] transform hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_hsl(45_100%_50%_/_0.3)] hover:shadow-[0_0_30px_hsl(45_100%_50%_/_0.6)]`}
               >
-                SECURE YOUR SLOT
+                {isClosed ? statusText.toUpperCase() : `SECURE YOUR SLOT (${timeLeft})`}
               </a>
             </section>
 

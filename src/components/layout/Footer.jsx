@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useRegistrationStatus from '../../hooks/useRegistrationStatus';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef(null);
+  const { isClosed, timeLeft, registrationUrl, statusText } = useRegistrationStatus();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,12 +54,12 @@ const Footer = () => {
         </p>
 
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLScd9mlrHgtLlPomwl2ZMR5_Z_2dZ_l1Q0fLmCFTUaien1K-lg/viewform?usp=sharing&ouid=100778809720239551618"
+          href={registrationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-cta-btn px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 hover:shadow-[0_0_40px_rgba(0,230,118,0.4)] hover:-translate-y-1 duration-300 inline-block text-center"
+          className={`footer-cta-btn px-8 py-4 ${isClosed ? 'bg-accent/20 text-accent border border-accent/30' : 'bg-primary text-black'} font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider mb-16 ${!isClosed ? 'hover:shadow-[0_0_40px_rgba(0,230,118,0.4)]' : ''} hover:-translate-y-1 duration-300 inline-block text-center`}
         >
-          Register Now
+          {isClosed ? statusText : `${statusText} (${timeLeft})`}
         </a>
 
         <div className="footer-bottom flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm text-zinc-500 gap-4">
@@ -68,7 +70,7 @@ const Footer = () => {
           <p>© 2026 IETE Students' Forum, RIT. All rights reserved.</p>
           <div className="flex gap-4">
             {[
-              { name: 'Instagram', href: 'https://www.instagram.com/ritchennai?igsh=MWt2NDhpd2gzbjQ2Mw==' },
+              { name: 'Instagram', href: 'https://www.instagram.com/rit_iete_official/' },
               { name: 'LinkedIn', href: 'https://www.linkedin.com/school/rit-chennai/' },
               { name: 'Email', href: '#' }
             ].map(link => (

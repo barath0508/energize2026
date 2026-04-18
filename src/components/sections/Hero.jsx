@@ -2,11 +2,13 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { MapPin, Users, Ticket } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useRegistrationStatus from '../../hooks/useRegistrationStatus';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const containerRef = useRef(null);
+  const { isClosed, timeLeft, registrationUrl, statusText } = useRegistrationStatus();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -190,12 +192,12 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScd9mlrHgtLlPomwl2ZMR5_Z_2dZ_l1Q0fLmCFTUaien1K-lg/viewform?usp=sharing&ouid=100778809720239551618"
+            href={registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hero-btn w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] hover:-translate-y-0.5 duration-300 inline-block text-center"
+            className={`hero-btn w-full sm:w-auto px-8 py-4 ${isClosed ? 'bg-accent/20 border border-accent/30 text-accent' : 'bg-primary text-black'} font-bold text-lg hover:bg-primary-dark transition-all rounded-sm border-glow active:scale-95 uppercase tracking-wider ${!isClosed ? 'hover:shadow-[0_0_30px_rgba(0,230,118,0.4)]' : ''} hover:-translate-y-0.5 duration-300 inline-block text-center`}
           >
-            ⚡ Register Now
+            {isClosed ? `⚡ ${statusText}` : `⚡ ${statusText} (${timeLeft})`}
           </a>
           <button
             onClick={() => {
