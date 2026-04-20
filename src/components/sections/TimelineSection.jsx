@@ -18,12 +18,17 @@ const TimelineSection = () => {
   const nodesRef = useRef([]);
 
   const schedule = [
-    { tag: '08:00 AM', title: 'Registration & Check-in', desc: 'Arrive, register your team, and get settled.', right: false },
-    { tag: '08:15 AM', title: 'Opening Ceremony', desc: 'Welcome address, rules briefing, and track reveals.', right: true },
-    { tag: '08:30 AM', title: 'Hacking Begins', titleIcon: true, desc: 'Start ideating and building your energy solutions.', right: false },
-    { tag: '12:00 PM', title: 'Midway Check & Mentoring', desc: 'Progress reviews and mentor guidance.', right: true },
-    { tag: '02:30 PM', title: 'Final Submissions & Judging', desc: 'Submit your projects and present to judges.', right: false },
-    { tag: '03:00 PM', title: 'Awards & Closing', desc: 'Prize distribution and certificates for all!', right: true },
+    { tag: '08:00 AM', title: 'Registration & Participant Check-in', desc: '8.00 AM – 8.30 AM', right: false },
+    { tag: '08:30 AM', title: 'Prayer song', desc: '8.30 AM – 8.35 AM', right: true },
+    { tag: '08:35 AM', title: 'Welcome Address', desc: '8.35 AM – 8.40 AM', right: false },
+    { tag: '08:40 AM', title: 'Inaugural Address & Event Launch', desc: '8.40 AM – 9.00 AM', right: true },
+    { tag: '09:10 AM', title: 'Briefing on Rules, Tracks & Problem Statements', desc: '9.10 AM – 9.20 AM', right: false },
+    { tag: '09:20 AM', title: 'Hackathon Development Session', titleIcon: true, desc: '9.20 AM – 1.30 PM', right: true },
+    { tag: '01:30 PM', title: 'Judging & Evaluation', desc: '1.30 PM – 2.30 PM', right: false },
+    { tag: '02:30 PM', title: 'Principal Address', desc: '2.30 PM – 2.40 PM', right: true },
+    { tag: '02:40 PM', title: 'Felicitation to Judge', desc: '2.40 PM – 2.50 PM', right: false },
+    { tag: '02:50 PM', title: 'Winner Announcement & Prize Distribution', desc: '2.50 PM – 3.10 PM', right: true },
+    { tag: '03:10 PM', title: 'Vote of Thanks', desc: '3.10 PM – 3.30 PM', right: false },
   ];
 
   useEffect(() => {
